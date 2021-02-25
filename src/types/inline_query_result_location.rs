@@ -1,3 +1,5 @@
+use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, message::Message}
+
 #[derive(Debug, Serialize)]
 pub struct InlineQueryResultLocation{
     pub type: String,

@@ -1,3 +1,5 @@
+use crate::types::{animation::Animation, message::Message, message_entity::MessageEntity, photo_size::PhotoSize}
+
 #[derive(Debug, Serialize)]
 pub struct Game{
     pub title: String,

@@ -1,3 +1,5 @@
+use crate::types::{mask_position::MaskPosition, photo_size::PhotoSize}
+
 #[derive(Debug, Serialize)]
 pub struct Sticker{
     pub file_id: String,

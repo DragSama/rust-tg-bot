@@ -23,8 +23,8 @@ def success(text: str) -> None: # print green colored text
     print(f"\033[92m{text}\033[0m")
 
 
-if not os.path.isdir("types"):
-    os.mkdir("types")
+if not os.path.isdir("src/types"):
+    os.mkdir("src/types")
 
 methods = json.loads(
     re.sub(
@@ -56,20 +56,23 @@ for method in methods:
     else:
         warn(f"Failed to generate file for {method}: Missing 'field' key.")
 
-files = [snake_to_camel(os.path.basename(x[:-3])) for x in glob.glob('types/*.rs')] # Get list of all files and convert them to CamelCase
-rfiles = glob.glob('types/*rs') # List of all files
+files = [snake_to_camel(os.path.basename(x[:-3])) for x in glob.glob('src/types/*.rs')] # Get list of all files and convert them to CamelCase
+rfiles = glob.glob('src/types/*rs') # List of all files
 
 for x in rfiles:
     with open(x, 'r') as file:
         imports = "use crate::types::{"
         read = file.read()
         for i in files:
-            if i in read and i not in x:
-                imports += i + ','
+            if camel_to_snake(i) in (x):
+              continue
+            if i in read:
+                imports += f'{camel_to_snake(i)}::{i}, '
         if imports == "use crate::types::{":
+            warn(f'No imports found for {x}')
             continue
-        imports = imports[:-1]
-        imports += '}'
+        imports = imports[:-2]
+        imports += '}\n'
         with open(x, 'w') as f:
             f.write(imports+'\n'+read)
         success(f'Added imports to {x}')

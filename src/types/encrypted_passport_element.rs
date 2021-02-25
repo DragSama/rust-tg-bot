@@ -1,3 +1,5 @@
+use crate::types::{file::File, passport_file::PassportFile}
+
 #[derive(Debug, Serialize)]
 pub struct EncryptedPassportElement{
     pub type: String,

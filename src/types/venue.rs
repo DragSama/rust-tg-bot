@@ -1,3 +1,5 @@
+use crate::types::{location::Location}
+
 #[derive(Debug, Serialize)]
 pub struct Venue{
     pub location: Location,

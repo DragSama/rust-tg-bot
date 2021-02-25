@@ -1,3 +1,5 @@
+use crate::types::{message::Message, user::User}
+
 #[derive(Debug, Serialize)]
 pub struct CallbackQuery{
     pub id: String,

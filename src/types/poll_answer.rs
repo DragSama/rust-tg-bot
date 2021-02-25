@@ -1,3 +1,5 @@
+use crate::types::{user::User}
+
 #[derive(Debug, Serialize)]
 pub struct PollAnswer{
     pub poll_id: String,

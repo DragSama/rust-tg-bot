@@ -1,3 +1,5 @@
+use crate::types::{photo_size::PhotoSize}
+
 #[derive(Debug, Serialize)]
 pub struct StickerSet{
     pub name: String,

@@ -1,3 +1,5 @@
+use crate::types::{message_entity::MessageEntity}
+
 #[derive(Debug, Serialize)]
 pub struct InputTextMessageContent{
     pub message_text: String,

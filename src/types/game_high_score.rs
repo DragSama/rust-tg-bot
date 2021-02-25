@@ -1,3 +1,5 @@
+use crate::types::{user::User}
+
 #[derive(Debug, Serialize)]
 pub struct GameHighScore{
     pub position: i64,
