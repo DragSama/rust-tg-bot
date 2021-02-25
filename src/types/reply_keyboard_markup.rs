@@ -1,6 +1,6 @@
 use crate::types::{keyboard_button::KeyboardButton}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct ReplyKeyboardMarkup{
     pub keyboard: Vec<Array> of KeyboardButton,
     pub resize_keyboard: Option<bool>,

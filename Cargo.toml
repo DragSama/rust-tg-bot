@@ -1,5 +1,5 @@
 [package]
-name = "rust-tg-bot"
+name = "rust_tg_bot"
 version = "0.1.0"
 authors = ["DragSama <49992845+DragSama@users.noreply.github.com>"]
 edition = "2018"
@@ -10,3 +10,4 @@ edition = "2018"
 reqwest = "0.11.1"
 serde = {version = "1.0.118", features = ["derive"]}
 serde_json = "1.0.60"
+tokio = { version = "1", features = ["full"] }

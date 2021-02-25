@@ -1,6 +1,6 @@
 use crate::types::{order_info::OrderInfo}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct SuccessfulPayment{
     pub currency: String,
     pub total_amount: i64,

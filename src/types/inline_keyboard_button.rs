@@ -1,6 +1,6 @@
 use crate::types::{game::Game, login_url::LoginUrl}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InlineKeyboardButton{
     pub text: String,
     pub url: Option<String>,

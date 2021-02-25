@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InputLocationMessageContent{
     pub latitude: f64,
     pub longitude: f64,

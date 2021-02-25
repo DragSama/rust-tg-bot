@@ -1,6 +1,6 @@
 use crate::types::{location::Location, user::User}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InlineQuery{
     pub id: String,
     pub from: User,

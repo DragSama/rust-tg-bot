@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct Invoice{
     pub title: String,
     pub description: String,

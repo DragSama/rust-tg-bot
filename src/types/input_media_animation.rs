@@ -1,6 +1,6 @@
 use crate::types::{file::File, message::Message, message_entity::MessageEntity}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InputMediaAnimation{
     pub type: String,
     pub media: String,

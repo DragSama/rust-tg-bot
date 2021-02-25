@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct LoginUrl{
     pub url: String,
     pub forward_text: Option<String>,

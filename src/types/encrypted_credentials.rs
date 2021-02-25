@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct EncryptedCredentials{
     pub data: String,
     pub hash: String,

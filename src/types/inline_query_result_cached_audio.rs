@@ -1,6 +1,6 @@
 use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, message::Message, message_entity::MessageEntity}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InlineQueryResultCachedAudio{
     pub type: String,
     pub id: String,

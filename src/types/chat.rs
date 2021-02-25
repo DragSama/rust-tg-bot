@@ -1,6 +1,6 @@
 use crate::types::{chat_location::ChatLocation, chat_permissions::ChatPermissions, chat_photo::ChatPhoto, location::Location, message::Message}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct Chat{
     pub id: i64,
     pub type: String,

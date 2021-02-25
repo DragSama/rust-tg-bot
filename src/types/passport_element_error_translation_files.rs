@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct PassportElementErrorTranslationFiles{
     pub source: String,
     pub type: String,

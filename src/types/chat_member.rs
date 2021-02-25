@@ -1,6 +1,6 @@
 use crate::types::{user::User}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct ChatMember{
     pub user: User,
     pub status: String,

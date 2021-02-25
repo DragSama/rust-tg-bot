@@ -1,6 +1,6 @@
 use crate::types::{photo_size::PhotoSize}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct StickerSet{
     pub name: String,
     pub title: String,

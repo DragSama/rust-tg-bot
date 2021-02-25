@@ -1,6 +1,6 @@
 use crate::types::{animation::Animation, audio::Audio, chat::Chat, contact::Contact, dice::Dice, document::Document, game::Game, inline_keyboard_markup::InlineKeyboardMarkup, invoice::Invoice, location::Location, message_entity::MessageEntity, passport_data::PassportData, photo_size::PhotoSize, poll::Poll, proximity_alert_triggered::ProximityAlertTriggered, sticker::Sticker, successful_payment::SuccessfulPayment, user::User, venue::Venue, video::Video, video_note::VideoNote, voice::Voice}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct Message{
     pub message_id: i64,
     pub from: Option<User>,

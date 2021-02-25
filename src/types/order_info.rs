@@ -1,6 +1,6 @@
 use crate::types::{shipping_address::ShippingAddress}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct OrderInfo{
     pub name: Option<String>,
     pub phone_number: Option<String>,

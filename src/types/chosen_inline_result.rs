@@ -1,6 +1,6 @@
 use crate::types::{location::Location, user::User}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct ChosenInlineResult{
     pub result_id: String,
     pub from: User,

@@ -1,6 +1,6 @@
 use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, message::Message}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InlineQueryResultArticle{
     pub type: String,
     pub id: String,

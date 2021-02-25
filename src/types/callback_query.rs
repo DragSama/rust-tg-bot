@@ -1,6 +1,6 @@
 use crate::types::{message::Message, user::User}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct CallbackQuery{
     pub id: String,
     pub from: User,

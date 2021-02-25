@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct ChatPermissions{
     pub can_send_messages: Option<bool>,
     pub can_send_media_messages: Option<bool>,

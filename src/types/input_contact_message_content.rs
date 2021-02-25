@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InputContactMessageContent{
     pub phone_number: String,
     pub first_name: String,

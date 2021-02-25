@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct KeyboardButtonPollType{
     pub type: Option<String>
 }

@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct Voice{
     pub file_id: String,
     pub file_unique_id: String,

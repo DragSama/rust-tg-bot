@@ -1,6 +1,6 @@
 use crate::types::{message::Message, message_entity::MessageEntity, poll_option::PollOption}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct Poll{
     pub id: String,
     pub question: String,

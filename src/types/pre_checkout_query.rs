@@ -1,6 +1,6 @@
 use crate::types::{order_info::OrderInfo, user::User}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct PreCheckoutQuery{
     pub id: String,
     pub from: User,

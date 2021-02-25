@@ -1,6 +1,6 @@
 use crate::types::{photo_size::PhotoSize}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct Animation{
     pub file_id: String,
     pub file_unique_id: String,

@@ -1,6 +1,6 @@
 use crate::types::{message::Message, message_entity::MessageEntity}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InputMediaPhoto{
     pub type: String,
     pub media: String,

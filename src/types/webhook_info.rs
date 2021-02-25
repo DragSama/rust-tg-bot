@@ -1,4 +1,4 @@
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct WebhookInfo{
     pub url: String,
     pub has_custom_certificate: bool,

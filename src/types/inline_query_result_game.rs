@@ -1,6 +1,6 @@
 use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup}
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize)]
 pub struct InlineQueryResultGame{
     pub type: String,
     pub id: String,

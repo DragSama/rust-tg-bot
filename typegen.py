@@ -38,42 +38,64 @@ methods = json.loads(
     .replace("Boolean", "bool")
     .replace("Float", "f64")
 )["types"]
+
 space = " " * 4
+files = []
 
-for method in methods:
-    struct = f"#[derive(Debug, Serialize)]\npub struct {method}" + "{\n"
-    method_data = methods[method]
-    if "fields" in method_data:
-        for field in method_data["fields"]:
-            if field["required"]:
-                struct += space + f'pub {field["name"]}: {field["types"][0]},\n'
-            else:
-                struct += space + f'pub {field["name"]}: Option<{field["types"][0]}>,\n'
-        struct = struct[:-2] + "\n}"
-        with open(f"types/{camel_to_snake(method)}.rs", "w") as file:
-            file.write(struct)
-        success(f"Generated file for {method}")
-    else:
-        warn(f"Failed to generate file for {method}: Missing 'field' key.")
+def save_struct():
+    global files
+    for method in methods:
+        struct = f"#[derive(Debug, Deserialize)]\npub struct {method}" + "{\n"
+        method_data = methods[method]
+        if "fields" in method_data:
+            for field in method_data["fields"]:
+                if field["required"]:
+                    struct += space + f'pub {field["name"]}: {field["types"][0]},\n'
+                else:
+                    struct += space + f'pub {field["name"]}: Option<{field["types"][0]}>,\n'
+            struct = struct[:-2] + "\n}"
+            files.append(camel_to_snake(method))
+            with open(f"src/types/{camel_to_snake(method)}.rs", "w") as file:
+                file.write(struct)
+            success(f"Generated file for {method}")
+        else:
+            warn(f"Failed to generate file for {method}: Missing 'field' key.")
 
-files = [snake_to_camel(os.path.basename(x[:-3])) for x in glob.glob('src/types/*.rs')] # Get list of all files and convert them to CamelCase
-rfiles = glob.glob('src/types/*rs') # List of all files
+def save_mod():
+    text = ""
+    for file in files:
+        text += f"mod {file};\n"
+    text += "\n\n"
+    for file in files:
+        text += f"pub use {file}::{snake_to_camel(file)};\n"
+    with open('src/types/mod.rs', 'w') as f:
+        f.write(text)
+    success("Created mod.rs file.")
 
-for x in rfiles:
-    with open(x, 'r') as file:
-        imports = "use crate::types::{"
-        read = file.read()
-        for i in files:
-            if camel_to_snake(i) in (x):
-              continue
-            if i in read:
-                imports += f'{camel_to_snake(i)}::{i}, '
-        if imports == "use crate::types::{":
-            warn(f'No imports found for {x}')
+def add_imports():
+    files = [snake_to_camel(os.path.basename(x[:-3])) for x in glob.glob('src/types/*.rs')] # Get list of all files and convert them to CamelCase
+    rfiles = glob.glob('src/types/*rs') # List of all files
+
+    for x in rfiles:
+        if "mod.rs" in x:
             continue
-        imports = imports[:-2]
-        imports += '}\n'
-        with open(x, 'w') as f:
-            f.write(imports+'\n'+read)
-        success(f'Added imports to {x}')
-        
+        with open(x, 'r') as file:
+            imports = "use crate::types::{"
+            read = file.read()
+            for i in files:
+                if camel_to_snake(i) in (x):
+                  continue
+                if i in read:
+                    imports += f'{camel_to_snake(i)}::{i}, '
+            if imports == "use crate::types::{":
+                warn(f'No imports found for {x}')
+                continue
+            imports = imports[:-2]
+            imports += '}\n'
+            with open(x, 'w') as f:
+                f.write(imports+'\n'+read)
+            success(f'Added imports to {x}')
+
+save_struct()
+save_mod()
+add_imports()
