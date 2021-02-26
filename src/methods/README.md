@@ -1,4 +1,5 @@
-**Failed to generate code for following methods**- [ ] getWebhookInfo
+**Failed to generate code for following methods**
+- [ ] getWebhookInfo
 ```json
 {
     "name": "getWebhookInfo",

@@ -1,4 +1,5 @@
-**Failed to generate code for following types**- [ ] InputMedia
+**Failed to generate code for following types**
+- [ ] InputMedia
 ```json
 {
     "name": "InputMedia",

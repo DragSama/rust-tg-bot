@@ -44,7 +44,7 @@ files = []
 
 def save_struct():
     global files
-    readme = "**Failed to generate code for following types**"
+    readme = "**Failed to generate code for following types**\n"
     for method in methods:
         struct = f"#[derive(Debug, Deserialize)]\npub struct {method}" + "{\n"
         method_data = methods[method]
