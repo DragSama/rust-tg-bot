@@ -65,7 +65,7 @@ def save_struct():
               f"- [ ] {method}\n"
               f"```json\n"
               f"{json.dumps(method_data, indent=4)}\n"
-              f"```"
+              f"```\n"
             )
         with open('src/types/README.md', 'w') as file:
           file.write(readme)

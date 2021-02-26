@@ -15,7 +15,8 @@
         "InputMediaVideo"
     ]
 }
-```- [ ] InputFile
+```
+- [ ] InputFile
 ```json
 {
     "name": "InputFile",
@@ -28,7 +29,8 @@
         "Objects and methods used in the inline mode are described in the Inline mode section."
     ]
 }
-```- [ ] InlineQueryResult
+```
+- [ ] InlineQueryResult
 ```json
 {
     "name": "InlineQueryResult",
@@ -59,7 +61,8 @@
         "InlineQueryResultVoice"
     ]
 }
-```- [ ] InputMessageContent
+```
+- [ ] InputMessageContent
 ```json
 {
     "name": "InputMessageContent",
@@ -74,7 +77,8 @@
         "InputContactMessageContent"
     ]
 }
-```- [ ] PassportElementError
+```
+- [ ] PassportElementError
 ```json
 {
     "name": "PassportElementError",
@@ -94,7 +98,8 @@
         "PassportElementErrorUnspecified"
     ]
 }
-```- [ ] CallbackGame
+```
+- [ ] CallbackGame
 ```json
 {
     "name": "CallbackGame",
