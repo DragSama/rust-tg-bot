@@ -44,6 +44,7 @@ files = []
 
 def save_struct():
     global files
+    readme = "**Failed to generate code for following types**"
     for method in methods:
         struct = f"#[derive(Debug, Deserialize)]\npub struct {method}" + "{\n"
         method_data = methods[method]
@@ -60,6 +61,14 @@ def save_struct():
             success(f"Generated file for {method}")
         else:
             warn(f"Failed to generate file for {method}: Missing 'field' key.")
+            readme += (
+              f"- [ ] {method}\n"
+              f"```json\n"
+              f"{json.dumps(method_data, indent=4)}\n"
+              f"```"
+            )
+        with open('src/types/README.md', 'w') as file:
+          file.write(readme)
 
 def save_mod():
     text = ""
