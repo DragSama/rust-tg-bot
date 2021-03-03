@@ -1,4 +1,6 @@
-use crate::types::{shipping_address::ShippingAddress, user::User}
+use crate::types::{ShippingAddress, User};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct ShippingQuery{

@@ -1,4 +1,6 @@
-use crate::types::{file::File, input_file::InputFile, message::Message, message_entity::MessageEntity}
+use crate::types::{File, InputFile, Message, MessageEntity};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InputMediaDocument{

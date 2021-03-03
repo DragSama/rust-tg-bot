@@ -1,4 +1,6 @@
-use crate::types::{message::Message, message_entity::MessageEntity}
+use crate::types::{Message, MessageEntity};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InputMediaPhoto{

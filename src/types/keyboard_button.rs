@@ -1,4 +1,6 @@
-use crate::types::{keyboard_button_poll_type::KeyboardButtonPollType, poll::Poll}
+use crate::types::{KeyboardButtonPollType, Poll};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct KeyboardButton{

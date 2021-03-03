@@ -1,4 +1,6 @@
-use crate::types::{animation::Animation, message::Message, message_entity::MessageEntity, photo_size::PhotoSize}
+use crate::types::{Animation, Message, MessageEntity, PhotoSize};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Game{

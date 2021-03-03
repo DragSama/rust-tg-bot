@@ -1,4 +1,6 @@
-use crate::types::{keyboard_button::KeyboardButton}
+use crate::types::{KeyboardButton};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct ReplyKeyboardMarkup{

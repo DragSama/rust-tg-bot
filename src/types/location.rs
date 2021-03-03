@@ -1,3 +1,5 @@
+use serde::Deserialize;
+
 #[derive(Debug, Deserialize)]
 pub struct Location{
     pub longitude: f64,

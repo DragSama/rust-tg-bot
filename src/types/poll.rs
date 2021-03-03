@@ -1,4 +1,6 @@
-use crate::types::{message::Message, message_entity::MessageEntity, poll_option::PollOption}
+use crate::types::{Message, MessageEntity, PollOption};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Poll{

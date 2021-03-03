@@ -1,4 +1,6 @@
-use crate::types::{mask_position::MaskPosition, photo_size::PhotoSize}
+use crate::types::{MaskPosition, PhotoSize};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Sticker{

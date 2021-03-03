@@ -1,4 +1,6 @@
-use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, input_message_content::InputMessageContent, message::Message}
+use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultCachedSticker{

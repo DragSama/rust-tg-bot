@@ -1,6 +1,8 @@
-use crate::types::{inline_keyboard_button::InlineKeyboardButton, keyboard_button::KeyboardButton}
+use crate::types::InlineKeyboardButton;
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineKeyboardMarkup{
-    pub inline_keyboard: Vec<Array> of InlineKeyboardButton
+    pub inline_keyboard: Vec<InlineKeyboardButton>
 }

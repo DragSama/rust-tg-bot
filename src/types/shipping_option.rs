@@ -1,4 +1,6 @@
-use crate::types::{labeled_price::LabeledPrice}
+use crate::types::{LabeledPrice};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct ShippingOption{

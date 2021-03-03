@@ -1,4 +1,6 @@
-use crate::types::{photo_size::PhotoSize}
+use crate::types::{PhotoSize};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Document{

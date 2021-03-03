@@ -1,3 +1,5 @@
+use serde::Deserialize;
+
 #[derive(Debug, Deserialize)]
 pub struct InputContactMessageContent{
     pub phone_number: String,

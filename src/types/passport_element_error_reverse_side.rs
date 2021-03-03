@@ -1,3 +1,5 @@
+use serde::Deserialize;
+
 #[derive(Debug, Deserialize)]
 pub struct PassportElementErrorReverseSide{
     pub source: String,

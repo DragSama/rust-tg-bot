@@ -1,4 +1,6 @@
-use crate::types::{callback_query::CallbackQuery, chosen_inline_result::ChosenInlineResult, inline_query::InlineQuery, message::Message, poll::Poll, poll_answer::PollAnswer, pre_checkout_query::PreCheckoutQuery, shipping_query::ShippingQuery}
+use crate::types::{CallbackQuery, ChosenInlineResult, InlineQuery, Message, Poll, PollAnswer, PreCheckoutQuery, ShippingQuery};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Update{

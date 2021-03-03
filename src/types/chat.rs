@@ -1,8 +1,10 @@
-use crate::types::{chat_location::ChatLocation, chat_permissions::ChatPermissions, chat_photo::ChatPhoto, location::Location, message::Message}
+use crate::types::{ChatLocation, ChatPermissions, ChatPhoto, Location, Message};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Chat{
-    pub id: i64,
+    pub id: i32,
     pub type: String,
     pub title: Option<String>,
     pub username: Option<String>,
@@ -17,6 +19,6 @@ pub struct Chat{
     pub slow_mode_delay: Option<i32>,
     pub sticker_set_name: Option<String>,
     pub can_set_sticker_set: Option<bool>,
-    pub linked_chat_id: Option<i64>,
+    pub linked_chat_id: Option<i32>,
     pub location: Option<ChatLocation>
 }

@@ -1,4 +1,6 @@
-use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup}
+use crate::types::{InlineKeyboardMarkup};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultGame{

@@ -1,4 +1,6 @@
-use crate::types::{message::Message, user::User}
+use crate::types::{Message, User};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct CallbackQuery{

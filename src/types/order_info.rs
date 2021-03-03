@@ -1,4 +1,6 @@
-use crate::types::{shipping_address::ShippingAddress}
+use crate::types::{ShippingAddress};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct OrderInfo{

@@ -1,4 +1,6 @@
-use crate::types::{animation::Animation, audio::Audio, chat::Chat, contact::Contact, dice::Dice, document::Document, game::Game, inline_keyboard_markup::InlineKeyboardMarkup, invoice::Invoice, location::Location, message_entity::MessageEntity, passport_data::PassportData, photo_size::PhotoSize, poll::Poll, proximity_alert_triggered::ProximityAlertTriggered, sticker::Sticker, successful_payment::SuccessfulPayment, user::User, venue::Venue, video::Video, video_note::VideoNote, voice::Voice}
+use crate::types::{Animation, Audio, Chat, Contact, Dice, Document, Game, InlineKeyboardMarkup, Invoice, Location, MessageEntity, PassportData, PhotoSize, Poll, ProximityAlertTriggered, Sticker, SuccessfulPayment, User, Venue, Video, VideoNote, Voice};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct Message{
@@ -13,7 +15,7 @@ pub struct Message{
     pub forward_signature: Option<String>,
     pub forward_sender_name: Option<String>,
     pub forward_date: Option<i32>,
-    pub reply_to_message: Option<Message>,
+    pub reply_to_message: Option<Box<Message>>,
     pub via_bot: Option<User>,
     pub edit_date: Option<i32>,
     pub media_group_id: Option<String>,
@@ -44,9 +46,9 @@ pub struct Message{
     pub group_chat_created: Option<bool>,
     pub supergroup_chat_created: Option<bool>,
     pub channel_chat_created: Option<bool>,
-    pub migrate_to_chat_id: Option<i64>,
-    pub migrate_from_chat_id: Option<i64>,
-    pub pinned_message: Option<Message>,
+    pub migrate_to_chat_id: Option<i32>,
+    pub migrate_from_chat_id: Option<i32>,
+    pub pinned_message: Option<Box<Message>>,
     pub invoice: Option<Invoice>,
     pub successful_payment: Option<SuccessfulPayment>,
     pub connected_website: Option<String>,

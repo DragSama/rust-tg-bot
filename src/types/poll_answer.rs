@@ -1,4 +1,6 @@
-use crate::types::{user::User}
+use crate::types::{User};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct PollAnswer{

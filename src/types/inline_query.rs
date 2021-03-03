@@ -1,4 +1,6 @@
-use crate::types::{location::Location, user::User}
+use crate::types::{Location, User};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQuery{

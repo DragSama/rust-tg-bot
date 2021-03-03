@@ -1,4 +1,6 @@
-use crate::types::{message_entity::MessageEntity}
+use crate::types::{MessageEntity};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InputTextMessageContent{

@@ -1,4 +1,6 @@
-use crate::types::{encrypted_credentials::EncryptedCredentials, encrypted_passport_element::EncryptedPassportElement}
+use crate::types::{EncryptedCredentials, EncryptedPassportElement};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct PassportData{

@@ -1,3 +1,5 @@
+use serde::Deserialize;
+
 #[derive(Debug, Deserialize)]
 pub struct ReplyKeyboardRemove{
     pub remove_keyboard: bool,

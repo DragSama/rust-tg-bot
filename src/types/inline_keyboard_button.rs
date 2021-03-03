@@ -1,4 +1,6 @@
-use crate::types::{callback_game::CallbackGame, game::Game, login_url::LoginUrl}
+use crate::types::{CallbackGame, Game, LoginUrl};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineKeyboardButton{

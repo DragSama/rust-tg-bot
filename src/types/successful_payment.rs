@@ -1,4 +1,6 @@
-use crate::types::{order_info::OrderInfo}
+use crate::types::{OrderInfo};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct SuccessfulPayment{

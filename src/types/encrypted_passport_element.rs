@@ -1,4 +1,6 @@
-use crate::types::{file::File, passport_file::PassportFile}
+use crate::types::{File, PassportFile};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct EncryptedPassportElement{

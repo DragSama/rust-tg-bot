@@ -1,4 +1,6 @@
-use crate::types::{order_info::OrderInfo, user::User}
+use crate::types::{OrderInfo, User};
+
+use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct PreCheckoutQuery{

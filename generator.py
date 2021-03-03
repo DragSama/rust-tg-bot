@@ -8,8 +8,6 @@ import re
 import os
 
 # Thanks to https://stackoverflow.com/a/1176023
-
-
 def camel_to_snake(name):
     name = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
     return re.sub("([a-z0-9])([A-Z])", r"\1_\2", name).lower()
@@ -56,7 +54,7 @@ class TypeGen:
         count = 0
         empty_count = 0
         for type in self.types:
-            struct = f"#[derive(Debug, Deserialize)]\npub struct {type}" + "{\n"
+            struct = f"use serde::Deserialize;\n\n#[derive(Debug, Deserialize)]\npub struct {type}" + "{\n"
             type_data = self.types[type]
             file_path = self.path / f"{camel_to_snake(type)}.rs"
             if os.path.exists(file_path) and not self.replace:
@@ -65,18 +63,20 @@ class TypeGen:
                 continue
             if "fields" in type_data:
                 for field in type_data["fields"]:
-                    type = field["types"][0]
+                    fieldtype = field["types"][0]
                     if "64 bit integer" in field["description"].lower() and type == "i32":
-                        type = "i64"
+                        fieldtype = "i64"
+                    if fieldtype == type:
+                        fieldtype = f"Box<{type}>"
                     if field["required"]:
                         struct += (
                             self.space +
-                            f'pub {field["name"]}: {type},\n'
+                            f'pub {field["name"]}: {fieldtype},\n'
                         )
                     else:
                         struct += (
                             self.space
-                            + f'pub {field["name"]}: Option<{type}>,\n'
+                            + f'pub {field["name"]}: Option<{fieldtype}>,\n'
                         )
                 struct = struct[:-2] + "\n}"
                 self.files.append(camel_to_snake(type))
@@ -124,17 +124,21 @@ class TypeGen:
             with open(x, "r") as file:
                 imports = "use crate::types::{"
                 read = file.read()
-                for i in files:
-                    if camel_to_snake(i) in (x):
+                for i in files: # Check all files available in /types to see if they are imported in this file
+                    # don't import self, though this can cause problems
+                    # i.e. location is in chat_location
+                    # Feel free to pr If you know a better way to avoid the above problem from happening
+                    # and still check if file is not same
+                    if camel_to_snake(i) in x:
                         continue
                     if i in read:
-                        imports += f"{camel_to_snake(i)}::{i}, "
+                        imports += f"{i}, "
                 if imports == "use crate::types::{":
                     self.verbose_print(f"No imports found for {x}")
                     no_imports += 1
                     continue
                 imports = imports[:-2]
-                imports += "}\n"
+                imports += "};\n"
                 with open(x, "w") as f:
                     f.write(imports + "\n" + read)
                 self.verbose_print(f"Added imports to {x}")
@@ -188,7 +192,7 @@ class MethodGen:
                     f"Ignoring {str(file_path)} because already exists."
                 )
                 continue
-            struct = f"use serde_json;\n\n#[derive(Debug, Serialize)]\npub struct {method}" + "{\n"
+            struct = f"use serde::Serialize;\n\n\n#[derive(Debug, Serialize)]\npub struct {method}" + "{\n"
             method_data = methods[method]
             if "fields" in method_data:
                 for field in method_data["fields"]:
