@@ -4,7 +4,7 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct MessageEntity{
-    pub type: String,
+    pub r#type: String,
     pub offset: i32,
     pub length: i32,
     pub url: Option<String>,

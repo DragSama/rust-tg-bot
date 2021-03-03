@@ -1,4 +1,4 @@
-use crate::types::{PhotoSize};
+use crate::types::{PhotoSize, Sticker};
 
 use serde::Deserialize;
 

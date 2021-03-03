@@ -5,7 +5,7 @@ use serde::Deserialize;
 #[derive(Debug, Deserialize)]
 pub struct Chat{
     pub id: i32,
-    pub type: String,
+    pub r#type: String,
     pub title: Option<String>,
     pub username: Option<String>,
     pub first_name: Option<String>,
