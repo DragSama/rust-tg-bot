@@ -1,4 +1,4 @@
-use crate::types::{game::Game, login_url::LoginUrl}
+use crate::types::{callback_game::CallbackGame, game::Game, login_url::LoginUrl}
 
 #[derive(Debug, Deserialize)]
 pub struct InlineKeyboardButton{

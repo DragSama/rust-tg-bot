@@ -1,4 +1,4 @@
-use crate::types::{file::File, message::Message, message_entity::MessageEntity}
+use crate::types::{file::File, input_file::InputFile, message::Message, message_entity::MessageEntity}
 
 #[derive(Debug, Deserialize)]
 pub struct InputMediaAudio{
@@ -8,7 +8,7 @@ pub struct InputMediaAudio{
     pub caption: Option<String>,
     pub parse_mode: Option<String>,
     pub caption_entities: Option<Vec<MessageEntity>>,
-    pub duration: Option<i64>,
+    pub duration: Option<i32>,
     pub performer: Option<String>,
     pub title: Option<String>
 }

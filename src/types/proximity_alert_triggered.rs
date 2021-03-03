@@ -4,5 +4,5 @@ use crate::types::{user::User}
 pub struct ProximityAlertTriggered{
     pub traveler: User,
     pub watcher: User,
-    pub distance: i64
+    pub distance: i32
 }

@@ -1,4 +1,4 @@
-use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, message::Message}
+use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, input_message_content::InputMessageContent, message::Message}
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultArticle{
@@ -11,6 +11,6 @@ pub struct InlineQueryResultArticle{
     pub hide_url: Option<bool>,
     pub description: Option<String>,
     pub thumb_url: Option<String>,
-    pub thumb_width: Option<i64>,
-    pub thumb_height: Option<i64>
+    pub thumb_width: Option<i32>,
+    pub thumb_height: Option<i32>
 }

@@ -3,7 +3,7 @@ use crate::types::{order_info::OrderInfo}
 #[derive(Debug, Deserialize)]
 pub struct SuccessfulPayment{
     pub currency: String,
-    pub total_amount: i64,
+    pub total_amount: i32,
     pub invoice_payload: String,
     pub shipping_option_id: Option<String>,
     pub order_info: Option<OrderInfo>,

@@ -1,4 +1,4 @@
-use crate::types::{file::File, message::Message, message_entity::MessageEntity}
+use crate::types::{file::File, input_file::InputFile, message::Message, message_entity::MessageEntity}
 
 #[derive(Debug, Deserialize)]
 pub struct InputMediaDocument{

@@ -1,4 +1,4 @@
 #[derive(Debug, Deserialize)]
 pub struct MessageId{
-    pub message_id: i64
+    pub message_id: i32
 }

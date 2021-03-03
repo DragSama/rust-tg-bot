@@ -2,7 +2,7 @@ use crate::types::{callback_query::CallbackQuery, chosen_inline_result::ChosenIn
 
 #[derive(Debug, Deserialize)]
 pub struct Update{
-    pub update_id: i64,
+    pub update_id: i32,
     pub message: Option<Message>,
     pub edited_message: Option<Message>,
     pub channel_post: Option<Message>,

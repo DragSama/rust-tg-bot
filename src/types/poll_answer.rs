@@ -4,5 +4,5 @@ use crate::types::{user::User}
 pub struct PollAnswer{
     pub poll_id: String,
     pub user: User,
-    pub option_ids: Vec<i64>
+    pub option_ids: Vec<i32>
 }

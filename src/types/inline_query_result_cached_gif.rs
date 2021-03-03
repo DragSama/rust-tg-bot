@@ -1,4 +1,4 @@
-use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, message::Message, message_entity::MessageEntity}
+use crate::types::{inline_keyboard_markup::InlineKeyboardMarkup, input_message_content::InputMessageContent, message::Message, message_entity::MessageEntity}
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultCachedGif{

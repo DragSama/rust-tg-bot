@@ -1,5 +1,5 @@
 #[derive(Debug, Deserialize)]
 pub struct Dice{
     pub emoji: String,
-    pub value: i64
+    pub value: i32
 }

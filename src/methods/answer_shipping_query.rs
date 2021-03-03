@@ -1,4 +1,5 @@
 use serde_json;
+
 #[derive(Debug, Serialize)]
 pub struct answerShippingQuery{
     pub shipping_query_id: String,

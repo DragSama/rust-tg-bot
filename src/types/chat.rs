@@ -14,7 +14,7 @@ pub struct Chat{
     pub invite_link: Option<String>,
     pub pinned_message: Option<Message>,
     pub permissions: Option<ChatPermissions>,
-    pub slow_mode_delay: Option<i64>,
+    pub slow_mode_delay: Option<i32>,
     pub sticker_set_name: Option<String>,
     pub can_set_sticker_set: Option<bool>,
     pub linked_chat_id: Option<i64>,

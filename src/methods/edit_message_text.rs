@@ -1,8 +1,9 @@
 use serde_json;
+
 #[derive(Debug, Serialize)]
 pub struct editMessageText{
-    pub chat_id: Option<i64>,
-    pub message_id: Option<i64>,
+    pub chat_id: Option<i32>,
+    pub message_id: Option<i32>,
     pub inline_message_id: Option<String>,
     pub text: String,
     pub parse_mode: Option<String>,

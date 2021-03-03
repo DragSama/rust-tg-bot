@@ -1,4 +1,4 @@
-use crate::types::{file::File, message::Message, message_entity::MessageEntity}
+use crate::types::{file::File, input_file::InputFile, message::Message, message_entity::MessageEntity}
 
 #[derive(Debug, Deserialize)]
 pub struct InputMediaVideo{
@@ -8,8 +8,8 @@ pub struct InputMediaVideo{
     pub caption: Option<String>,
     pub parse_mode: Option<String>,
     pub caption_entities: Option<Vec<MessageEntity>>,
-    pub width: Option<i64>,
-    pub height: Option<i64>,
-    pub duration: Option<i64>,
+    pub width: Option<i32>,
+    pub height: Option<i32>,
+    pub duration: Option<i32>,
     pub supports_streaming: Option<bool>
 }
