@@ -94,6 +94,7 @@ mod passport_element_error_translation_files;
 mod passport_element_error_unspecified;
 mod game;
 mod game_high_score;
+mod error;
 
 
 pub use update::Update;
@@ -192,3 +193,4 @@ pub use passport_element_error_translation_files::PassportElementErrorTranslatio
 pub use passport_element_error_unspecified::PassportElementErrorUnspecified;
 pub use game::Game;
 pub use game_high_score::GameHighScore;
+pub use error::Error;
