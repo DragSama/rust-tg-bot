@@ -17,3 +17,9 @@ pub struct Update{
     pub poll: Option<Poll>,
     pub poll_answer: Option<PollAnswer>
 }
+
+#[derive(Debug, Deserialize)]
+pub struct UpdateResp {
+    pub ok: bool,
+    pub result: Vec<Update>
+}

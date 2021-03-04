@@ -1,4 +1,4 @@
-use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message};
+use crate::types::{InlineKeyboardMarkup, InputMessageContent};
 
 use serde::Deserialize;
 
