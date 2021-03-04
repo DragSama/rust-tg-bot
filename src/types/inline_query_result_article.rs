@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message};
+use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultArticle{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub title: String,
     pub input_message_content: InputMessageContent,

@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{User, UserProfilePhotos};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct getUserProfilePhotos{

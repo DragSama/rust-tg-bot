@@ -1,10 +1,10 @@
-use crate::types::{File, PassportFile};
+use crate::types::{PassportFile};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct EncryptedPassportElement{
-    pub type: String,
+    pub r#type: String,
     pub data: Option<String>,
     pub phone_number: Option<String>,
     pub email: Option<String>,

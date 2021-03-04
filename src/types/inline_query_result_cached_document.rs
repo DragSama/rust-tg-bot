@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message, MessageEntity};
+use crate::types::{Document, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultCachedDocument{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub title: String,
     pub document_file_id: String,

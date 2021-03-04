@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message, MessageEntity};
+use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultGif{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub gif_url: String,
     pub gif_width: Option<i32>,

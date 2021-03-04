@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{InlineKeyboardMarkup, Message, MessageEntity, Poll};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct sendPoll{
@@ -6,7 +8,7 @@ pub struct sendPoll{
     pub question: String,
     pub options: Vec<String>,
     pub is_anonymous: Option<bool>,
-    pub type: Option<String>,
+    pub r#type: Option<String>,
     pub allows_multiple_answers: Option<bool>,
     pub correct_option_id: Option<i32>,
     pub explanation: Option<String>,

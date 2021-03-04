@@ -16,6 +16,19 @@ def camel_to_snake(name):
 def snake_to_camel(name):
     return "".join(word.title() for word in name.split("_"))
 
+def convert(text):
+    text = text.replace("Integer", "i32").replace("Boolean", "bool").replace("Float", "f64")
+    text = re.sub(
+        "Array of Array of (\w+)",
+        r"Vec<Vec<\1>>",
+        text,
+    ) # Handle [[InlineKeyboardButton]]
+    text = re.sub(
+        "Array of (\w+)",
+        r"Vec<\1>",
+        text,
+    )
+    return text
 
 class TypeGen:
     def __init__(self, path, replace, verbose):
@@ -24,18 +37,7 @@ class TypeGen:
         self.path = Path(path) / "types"
         if not os.path.isdir(self.path):
             os.mkdir(self.path)
-        self.types = json.loads(
-            re.sub(
-                "Array of (\w+)",
-                r"Vec<\1>",
-                requests.get(
-                    "https://raw.githubusercontent.com/PaulSonOfLars/telegram-bot-api-spec/main/api.json"
-                ).text,
-            )
-            .replace("Integer", "i32")
-            .replace("Boolean", "bool")
-            .replace("Float", "f64")
-        )["types"]
+        self.types = json.loads(convert(requests.get("https://raw.githubusercontent.com/PaulSonOfLars/telegram-bot-api-spec/main/api.json").text))["types"]
         self.replace = replace
         self.space = " " * 4
         self.files = []
@@ -68,15 +70,20 @@ class TypeGen:
                         fieldtype = "i64"
                     if fieldtype == type:
                         fieldtype = f"Box<{type}>"
+                    name = field["name"]
+                    if name == "type":
+                        name = "r#type"
+                    if name == "mod":
+                        name = "r#mod"
                     if field["required"]:
                         struct += (
                             self.space +
-                            f'pub {field["name"]}: {fieldtype},\n'
+                            f'pub {name}: {fieldtype},\n'
                         )
                     else:
                         struct += (
                             self.space
-                            + f'pub {field["name"]}: Option<{fieldtype}>,\n'
+                            + f'pub {name}: Option<{fieldtype}>,\n'
                         )
                 struct = struct[:-2] + "\n}"
                 self.files.append(camel_to_snake(type))
@@ -97,12 +104,16 @@ class TypeGen:
 
     def save_mod(self):
         text = ""
-        files = self.files
+        files = glob.glob(os.path.join(str(self.path), "*.rs"))
         for file in files:
-            text += f"mod {file};\n"
+            if "mod.rs" in file:
+                continue
+            text += f"mod {os.path.basename(file)[:-3]};\n"
         text += "\n\n"
         for file in files:
-            text += f"pub use {file}::{snake_to_camel(file)};\n"
+            if "mod.rs" in file:
+                continue
+            text += f"pub use {os.path.basename(file)[:-3]}::{snake_to_camel(os.path.basename(file)[:-3])};\n"
         mod_file = self.path / "mod.rs"
         with open(mod_file, "w") as f:
             f.write(text)
@@ -124,12 +135,8 @@ class TypeGen:
             with open(x, "r") as file:
                 imports = "use crate::types::{"
                 read = file.read()
-                for i in files: # Check all files available in /types to see if they are imported in this file
-                    # don't import self, though this can cause problems
-                    # i.e. location is in chat_location
-                    # Feel free to pr If you know a better way to avoid the above problem from happening
-                    # and still check if file is not same
-                    if camel_to_snake(i) in x:
+                for i in files: # Check all files available in /types to see if they are imported in this file.
+                    if camel_to_snake(i) == os.path.basename(x[:-3]): # Don't use self.
                         continue
                     if i in read:
                         imports += f"{i}, "
@@ -153,6 +160,7 @@ class MethodGen:
         if path.endswith("/") or path.endswith("\\"):
             path = path[:-1]
         self.path = Path(path) / "methods"
+        self.types_path = Path(path) / "types"
         if not os.path.isdir(self.path):
             os.mkdir(self.path)
         self.methods = json.loads(
@@ -174,6 +182,10 @@ class MethodGen:
 
         self.save_struct()
         self.save_mod()
+        if not os.path.isdir(self.types_path):
+            print("[METHODS] Types folder doesn't exist! Skipping adding imports..")
+        else:
+            self.add_imports()
 
     def verbose_print(self, data: str):
         """Only print if verbose is set to True"""
@@ -232,6 +244,31 @@ class MethodGen:
             f.write(text)
         self.verbose_print(f"Created mod.rs file at {str(mod_file)}.")
 
+    def add_imports(self):
+        count = 0
+        no_import = 0
+        for method_file in glob.glob(os.path.join(str(self.path), "*.rs")):
+            imports = "use crate::types::{"
+            with open(method_file, 'r') as file:
+                read = file.read()
+                for file in glob.glob(os.path.join(str(self.types_path), "*.rs")):
+                    basename = snake_to_camel(os.path.basename(file)[:-3])
+                    if basename in read:
+                        imports += basename + ', '
+            if imports == "use crate::types::{":
+                self.verbose_print(f"No imports found for {method_file}")
+                no_import += 1
+                continue
+            imports = imports[:-2] + '};'
+            with open(method_file, 'w') as f:
+                f.write(imports + '\n' + read)
+            self.verbose_print(f'Added imports for {method_file}')
+            count += 1
+        print(f"[METHODS] Added imports to {count} files, Couldn't find imports for {no_import} files.")
+
+
+
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -265,3 +302,4 @@ if __name__ == "__main__":
         TypeGen(args.path, args.replace, args.verbose)
     if args.methods:
         MethodGen(args.path, args.replace, args.verbose)
+    print('\nNote: Use --verbose for more info.')

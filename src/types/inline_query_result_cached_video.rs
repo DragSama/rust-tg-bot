@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message, MessageEntity};
+use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity, Video};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultCachedVideo{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub video_file_id: String,
     pub title: String,

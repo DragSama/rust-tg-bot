@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message};
+use crate::types::{Contact, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultContact{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub phone_number: String,
     pub first_name: String,

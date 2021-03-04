@@ -1,4 +1,5 @@
-use serde_json;
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct getMyCommands;

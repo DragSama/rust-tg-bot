@@ -1,4 +1,4 @@
-use crate::types::{ChatLocation, ChatPermissions, ChatPhoto, Location, Message};
+use crate::types::{ChatLocation, ChatPermissions, ChatPhoto, Message};
 
 use serde::Deserialize;
 
@@ -14,7 +14,7 @@ pub struct Chat{
     pub bio: Option<String>,
     pub description: Option<String>,
     pub invite_link: Option<String>,
-    pub pinned_message: Option<Message>,
+    pub pinned_message: Box<Option<Message>>,
     pub permissions: Option<ChatPermissions>,
     pub slow_mode_delay: Option<i32>,
     pub sticker_set_name: Option<String>,

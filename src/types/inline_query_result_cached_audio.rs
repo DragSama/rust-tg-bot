@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message, MessageEntity};
+use crate::types::{Audio, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultCachedAudio{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub audio_file_id: String,
     pub caption: Option<String>,

@@ -1,3 +1,4 @@
+use crate::types::{Animation, Audio, CallbackQuery, Chat, ChatMember, ChatPermissions, ChatPhoto, Contact, Dice, Document, File, Game, GameHighScore, InlineQuery, Invoice, Location, Message, PassportData, Poll, PreCheckoutQuery, ShippingQuery, Sticker, StickerSet, Update, User, UserProfilePhotos, Venue, Video, VideoNote, Voice};
 mod get_updates;
 mod set_webhook;
 mod delete_webhook;

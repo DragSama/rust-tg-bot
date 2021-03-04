@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{Document, File, InlineKeyboardMarkup, InputFile, Message, MessageEntity};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct sendDocument{

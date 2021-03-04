@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{Animation, File, InlineKeyboardMarkup, InputFile, Message, MessageEntity};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct sendAnimation{

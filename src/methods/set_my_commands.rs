@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{BotCommand};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct setMyCommands{

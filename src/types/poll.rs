@@ -1,4 +1,4 @@
-use crate::types::{Message, MessageEntity, PollOption};
+use crate::types::{MessageEntity, PollOption};
 
 use serde::Deserialize;
 
@@ -10,7 +10,7 @@ pub struct Poll{
     pub total_voter_count: i32,
     pub is_closed: bool,
     pub is_anonymous: bool,
-    pub type: String,
+    pub r#type: String,
     pub allows_multiple_answers: bool,
     pub correct_option_id: Option<i32>,
     pub explanation: Option<String>,

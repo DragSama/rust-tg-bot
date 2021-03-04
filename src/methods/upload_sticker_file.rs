@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{File, InputFile, Sticker};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct uploadStickerFile{

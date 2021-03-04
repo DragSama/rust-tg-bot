@@ -1,4 +1,4 @@
-use crate::types::{CallbackGame, Game, LoginUrl};
+use crate::types::{CallbackGame, LoginUrl};
 
 use serde::Deserialize;
 

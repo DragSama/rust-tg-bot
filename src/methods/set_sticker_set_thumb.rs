@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{File, InputFile, Sticker, StickerSet};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct setStickerSetThumb{

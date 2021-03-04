@@ -1,10 +1,10 @@
-use crate::types::{File, InputFile, Message, MessageEntity};
+use crate::types::{Animation, File, InputFile, InputMedia, Message, MessageEntity};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InputMediaAnimation{
-    pub type: String,
+    pub r#type: String,
     pub media: String,
     pub thumb: Option<InputFile>,
     pub caption: Option<String>,

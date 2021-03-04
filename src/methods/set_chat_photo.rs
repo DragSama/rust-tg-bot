@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{Chat, ChatPhoto, File, InputFile};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct setChatPhoto{

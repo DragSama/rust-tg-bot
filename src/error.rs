@@ -1,3 +1,5 @@
+use crate::types::{Chat};
+
 use std::fmt;
 
 #[derive(Debug)]

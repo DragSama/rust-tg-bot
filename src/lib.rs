@@ -1,23 +1,21 @@
-#![allow(warnings)]
-
 extern crate reqwest;
 extern crate serde_json;
 
 pub mod types;
-use types::Update;
+
 
 pub struct Updater {
     pub bot_token: String,
     pub base_endpoint: String,
-    pub reqwest_client: reqwest::Client
+    pub reqwest_client: reqwest::Client,
 }
 
 impl Updater {
-    pub fn new(bot_token: &str) -> Self{
+    pub fn new(bot_token: &str) -> Self {
         Self {
-           bot_token: bot_token.into(),
-           base_endpoint: format!("https://api.telegram.org/bot{}/", bot_token).into(),
-            reqwest_client: reqwest::Client::new()
+            bot_token: bot_token.into(),
+            base_endpoint: format!("https://api.telegram.org/bot{}/", bot_token).into(),
+            reqwest_client: reqwest::Client::new(),
         }
     }
     //async fn handle_update(self, update: Update){

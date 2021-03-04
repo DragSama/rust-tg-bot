@@ -1,10 +1,10 @@
-use crate::types::{InlineKeyboardMarkup, InputMessageContent, Message, MessageEntity};
+use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity};
 
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
 pub struct InlineQueryResultMpeg4Gif{
-    pub type: String,
+    pub r#type: String,
     pub id: String,
     pub mpeg4_url: String,
     pub mpeg4_width: Option<i32>,

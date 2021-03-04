@@ -1,4 +1,4 @@
-use crate::types::{KeyboardButtonPollType, Poll};
+use crate::types::{KeyboardButtonPollType};
 
 use serde::Deserialize;
 

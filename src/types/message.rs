@@ -10,7 +10,7 @@ pub struct Message{
     pub date: i32,
     pub chat: Chat,
     pub forward_from: Option<User>,
-    pub forward_from_chat: Option<Chat>,
+    pub forward_from_chat: Box<Option<Chat>>,
     pub forward_from_message_id: Option<i32>,
     pub forward_signature: Option<String>,
     pub forward_sender_name: Option<String>,

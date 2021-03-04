@@ -1,4 +1,6 @@
-use serde_json;
+use crate::types::{Dice, InlineKeyboardMarkup};
+use serde::Serialize;
+
 
 #[derive(Debug, Serialize)]
 pub struct sendDice{
