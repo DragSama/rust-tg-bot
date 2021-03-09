@@ -56,7 +56,7 @@ class TypeGen:
         count = 0
         empty_count = 0
         for type in self.types:
-            struct = f"use serde::Deserialize;\n\n#[derive(Debug, Deserialize)]\npub struct {type}" + "{\n"
+            struct = "use serde::{Deserialize, Serialize};\n\n" + f"#[derive(Debug, Deserialize, Serialize)]\npub struct {type}" + "{\n"
             type_data = self.types[type]
             file_path = self.path / f"{camel_to_snake(type)}.rs"
             if os.path.exists(file_path) and not self.replace:
@@ -75,13 +75,16 @@ class TypeGen:
                         name = "r#type"
                     if name == "mod":
                         name = "r#mod"
+                    desc = f"{self.space}/// {field['description'].replace('�', '')}\n"
                     if field["required"]:
                         struct += (
+                            desc +
                             self.space +
                             f'pub {name}: {fieldtype},\n'
                         )
                     else:
                         struct += (
+                            desc +
                             self.space
                             + f'pub {name}: Option<{fieldtype}>,\n'
                         )
@@ -187,6 +190,13 @@ class MethodGen:
         else:
             self.add_imports()
 
+    def gen_impl(self, struct):
+        impl = f"impl {struct} " + "{\n"
+        impl += f"{self.space}fn get_data(&self) -> (String, &str) " + "{\n"
+        impl += f'{self.space*2}(serde_json::to_string(&self).unwrap(), "{struct}")\n' + '}'
+        impl += '}'
+        return impl
+
     def verbose_print(self, data: str):
         """Only print if verbose is set to True"""
         if self.verbose:
@@ -204,18 +214,20 @@ class MethodGen:
                     f"Ignoring {str(file_path)} because already exists."
                 )
                 continue
-            struct = f"use serde::Serialize;\n\n\n#[derive(Debug, Serialize)]\npub struct {method}" + "{\n"
+            struct = f"use serde::Serialize;\nuse serde_json;\n\n\n#[derive(Debug, Serialize)]\npub struct {method[0].upper() + method[1:]}" + "{\n"
             method_data = methods[method]
             if "fields" in method_data:
                 for field in method_data["fields"]:
                     type = field["types"][0]
                     if "64 bit integer" in field["description"].lower() and type == "i32":
                         type = "i64"
+                    desc = f"{self.space} /// {field['description'].replace('�', '')}\n"
                     if field["required"]:
-                        struct += self.space + f'pub {field["name"]}: {type},\n'
+                        struct += desc + self.space + f'pub {field["name"]}: {type},\n'
                     else:
-                        struct += self.space + f'pub {field["name"]}: Option<{type}>,\n'
+                        struct += desc + self.space + f'pub {field["name"]}: Option<{type}>,\n'
                 struct = struct[:-2] + "\n}"
+                struct += '\n\n' + self.gen_impl(method[0].upper() + method[1:])
                 files.append(camel_to_snake(method))
                 with open(file_path, "w") as file:
                     file.write(struct)
@@ -238,7 +250,8 @@ class MethodGen:
             text += f"mod {file};\n"
         text += "\n\n"
         for file in files:
-            text += f"pub use {file}::{snake_to_camel(file)};\n"
+            struct_name = snake_to_camel(file)
+            text += f"pub use {file}::{struct_name[0].upper() + struct_name[1:]};\n"
         mod_file = self.path / "mod.rs"
         with open(mod_file, "w") as f:
             f.write(text)

@@ -196,7 +196,7 @@ pub use shipping_query::ShippingQuery;
 pub use sticker::Sticker;
 pub use sticker_set::StickerSet;
 pub use successful_payment::SuccessfulPayment;
-pub use update::{Update, UpdateResp};
+pub use update::{Update, Updates};
 pub use user::User;
 pub use user_profile_photos::UserProfilePhotos;
 pub use venue::Venue;

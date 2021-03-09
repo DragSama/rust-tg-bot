@@ -1,6 +1,6 @@
+use crate::types::{Message};
 
+use serde::{Deserialize, Serialize};
 
-use serde::Deserialize;
-
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct InputMessageContent;
