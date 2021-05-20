@@ -8,6 +8,7 @@ pub mod types;
 pub mod methods;
 
 use crate::types::{Update, Updates};
+use std::{cmp::max};
 
 pub struct Bot {
     pub token: String
@@ -35,33 +36,24 @@ impl Updater {
             reqwest_client: reqwest::Client::new(),
         }
     }
-    async fn post(self, path: &str, data: String) -> String{
-        let url = format!("{}{}", self.base_endpoint, path);
-        self.reqwest_client.post(&url)
-                .header("Content-Type", "application/json")
-                .header("Accept", "application/json")
-                .body(data)
-                .send()
-                .await
-                .unwrap()
-                .text()
-                .await
-                .unwrap()
-    }
 
     pub async fn handle_update(&self, update: &Update){
        println!("Got update: {:#?}", update)
     }
     pub async fn start_polling(self){
-        let mut offset: i32 = 0;
+        let mut offset: i64 = 0;
         loop {
-            let url = format!("{}{}?offset={}", self.base_endpoint, "getUpdates", offset);
+            let url = format!("{}{}?offset={}", self.base_endpoint, "getUpdates", offset+1);
+            println!("Working 1");
             let result = self.reqwest_client.get(&url).send().await.unwrap().text().await.unwrap();
-            let mut resp = serde_json::from_str::<Updates>(&result).unwrap();
+            println!("Working 2");
+            let resp = serde_json::from_str::<Updates>(&result).unwrap();
+            println!("Working 3");
             for update in resp.result.iter() {
                 self.handle_update(update).await;
-                offset = update.update_id
+                offset = max(offset, update.update_id);
             }
+            println!("Working 4");
         }
     }
 }
