@@ -8,6 +8,6 @@ pub trait Handler: Send + Sync {
 
 #[async_trait]
 pub trait Dispatcher {
-    async fn handle_update(update: Update);
-    async fn add_handler(&mut self, handler: &dyn Handler, group: Option<i32>);
+    async fn handle_update(&self, update: Update);
+    fn add_handler(&mut self, handler: Box<dyn Handler>, group: Option<i32>);
 }

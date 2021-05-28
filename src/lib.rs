@@ -7,8 +7,10 @@ extern crate serde_json;
 
 pub mod types;
 pub mod methods;
+pub mod traits;
 
-use crate::types::{Update, Updates};
+use crate::{types::{Update, Updates}, traits::dispatcher::{Dispatcher as dp_trait, Handler}};
+use async_trait::async_trait;
 use std::{cmp::max};
 
 pub struct Bot {
@@ -35,7 +37,7 @@ impl CommandHandler {
 }
 
 pub struct Dispatcher {
-    pub handlers: Vec<CommandHandler>
+    pub handlers: Vec<Box<dyn Handler>>
 }
 
 impl Dispatcher {
@@ -44,10 +46,14 @@ impl Dispatcher {
             handlers: Vec::new()
         }
     }
-    pub fn add_handler(&mut self, handler: CommandHandler){
+}
+
+#[async_trait]
+impl dp_trait for Dispatcher {
+    fn add_handler(&mut self, handler: Box<dyn Handler>, group: Option<i32>){
         self.handlers.push(handler);
     }
-    pub async fn handle_update(&self, update: &Update){
+    async fn handle_update(&self, update: Update){
         println!("{:#?}", update);
     }
 }
@@ -78,9 +84,9 @@ impl Updater {
             println!("Working 2");
             let resp = serde_json::from_str::<Updates>(&result).unwrap();
             println!("Working 3");
-            for update in resp.result.iter() {
+            for update in resp.result {
+	offset = max(offset, update.update_id);
                 self.dispatcher.handle_update(update).await;
-                offset = max(offset, update.update_id);
             }
             println!("Working 4");
         }
