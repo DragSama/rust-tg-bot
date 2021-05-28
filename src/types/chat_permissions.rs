@@ -1,9 +1,9 @@
-use crate::types::{Chat};
+use crate::types::Chat;
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct ChatPermissions{
+pub struct ChatPermissions {
     /// Optional. True, if the user is allowed to send text messages, contacts, locations and venues
     pub can_send_messages: Option<bool>,
     /// Optional. True, if the user is allowed to send audios, documents, photos, videos, video notes and voice notes, implies can_send_messages
@@ -19,5 +19,5 @@ pub struct ChatPermissions{
     /// Optional. True, if the user is allowed to invite new users to the chat
     pub can_invite_users: Option<bool>,
     /// Optional. True, if the user is allowed to pin messages. Ignored in public supergroups
-    pub can_pin_messages: Option<bool>
+    pub can_pin_messages: Option<bool>,
 }

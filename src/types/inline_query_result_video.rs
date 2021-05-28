@@ -1,9 +1,12 @@
-use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity, Video};
+use crate::types::{
+    InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message,
+    MessageEntity, Video,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQueryResultVideo{
+pub struct InlineQueryResultVideo {
     /// Type of the result, must be video
     pub r#type: String,
     /// Unique identifier for this result, 1-64 bytes
@@ -33,5 +36,5 @@ pub struct InlineQueryResultVideo{
     /// Optional. Inline keyboard attached to the message
     pub reply_markup: Option<InlineKeyboardMarkup>,
     /// Optional. Content of the message to be sent instead of the video. This field is required if InlineQueryResultVideo is used to send an HTML-page as a result (e.g., a YouTube video).
-    pub input_message_content: Option<InputMessageContent>
+    pub input_message_content: Option<InputMessageContent>,
 }

@@ -3,7 +3,7 @@ use crate::types::{Message, MessageEntity, PollOption};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Poll{
+pub struct Poll {
     /// Unique poll identifier
     pub id: String,
     /// Poll question, 1-300 characters
@@ -29,5 +29,5 @@ pub struct Poll{
     /// Optional. Amount of time in seconds the poll will be active after creation
     pub open_period: Option<i32>,
     /// Optional. Point in time (Unix timestamp) when the poll will be automatically closed
-    pub close_date: Option<i32>
+    pub close_date: Option<i32>,
 }

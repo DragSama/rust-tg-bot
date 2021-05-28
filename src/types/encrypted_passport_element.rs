@@ -1,9 +1,12 @@
-use crate::types::{EncryptedCredentials, File, PassportElementError, PassportElementErrorUnspecified, PassportFile, User};
+use crate::types::{
+    EncryptedCredentials, File, PassportElementError, PassportElementErrorUnspecified,
+    PassportFile, User,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct EncryptedPassportElement{
+pub struct EncryptedPassportElement {
     /// Element type. One of "personal_details", "passport", "driver_license", "identity_card", "internal_passport", "address", "utility_bill", "bank_statement", "rental_agreement", "passport_registration", "temporary_registration", "phone_number", "email".
     pub r#type: String,
     /// Optional. Base64-encoded encrypted Telegram Passport element data provided by the user, available for "personal_details", "passport", "driver_license", "identity_card", "internal_passport" and "address" types. Can be decrypted and verified using the accompanying EncryptedCredentials.
@@ -23,5 +26,5 @@ pub struct EncryptedPassportElement{
     /// Optional. Vec<encrypted> files with translated versions of documents provided by the user. Available if requested for "passport", "driver_license", "identity_card", "internal_passport", "utility_bill", "bank_statement", "rental_agreement", "passport_registration" and "temporary_registration" types. Files can be decrypted and verified using the accompanying EncryptedCredentials.
     pub translation: Option<Vec<PassportFile>>,
     /// Base64-encoded element hash for using in PassportElementErrorUnspecified
-    pub hash: String
+    pub hash: String,
 }

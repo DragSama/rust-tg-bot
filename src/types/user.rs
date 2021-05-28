@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct User{
+pub struct User {
     /// Unique identifier for this user or bot
     pub id: i32,
     /// True, if this user is a bot
@@ -19,5 +19,5 @@ pub struct User{
     /// Optional. True, if privacy mode is disabled for the bot. Returned only in getMe.
     pub can_read_all_group_messages: Option<bool>,
     /// Optional. True, if the bot supports inline queries. Returned only in getMe.
-    pub supports_inline_queries: Option<bool>
+    pub supports_inline_queries: Option<bool>,
 }

@@ -1,4 +1,4 @@
-use crate::types::{InlineQuery};
+use crate::types::InlineQuery;
 
 use serde::{Deserialize, Serialize};
 

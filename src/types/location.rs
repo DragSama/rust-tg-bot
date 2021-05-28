@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Location{
+pub struct Location {
     /// Longitude as defined by sender
     pub longitude: f64,
     /// Latitude as defined by sender
@@ -13,5 +13,5 @@ pub struct Location{
     /// Optional. The direction in which user is moving, in degrees; 1-360. For active live locations only.
     pub heading: Option<i32>,
     /// Optional. Maximum distance for proximity alerts about approaching another chat member, in meters. For sent live locations only.
-    pub proximity_alert_radius: Option<i32>
+    pub proximity_alert_radius: Option<i32>,
 }

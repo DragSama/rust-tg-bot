@@ -3,7 +3,7 @@ use crate::types::{Chat, User};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct ChatMember{
+pub struct ChatMember {
     /// Information about the user
     pub user: User,
     /// The member's status in the chat. Can be "creator", "administrator", "member", "restricted", "left" or "kicked"
@@ -43,5 +43,5 @@ pub struct ChatMember{
     /// Optional. Restricted only. True, if the user is allowed to add web page previews to their messages
     pub can_add_web_page_previews: Option<bool>,
     /// Optional. Restricted and kicked only. Date when restrictions will be lifted for this user; unix time
-    pub until_date: Option<i32>
+    pub until_date: Option<i32>,
 }

@@ -1,9 +1,13 @@
-use crate::types::{Animation, Audio, Chat, Contact, Dice, Document, Game, InlineKeyboardMarkup, Invoice, Location, MessageEntity, PassportData, PhotoSize, Poll, ProximityAlertTriggered, Sticker, SuccessfulPayment, User, Venue, Video, VideoNote, Voice};
+use crate::types::{
+    Animation, Audio, Chat, Contact, Dice, Document, Game, InlineKeyboardMarkup, Invoice, Location,
+    MessageEntity, PassportData, PhotoSize, Poll, ProximityAlertTriggered, Sticker,
+    SuccessfulPayment, User, Venue, Video, VideoNote, Voice,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Message{
+pub struct Message {
     /// Unique message identifier inside this chat
     pub message_id: i32,
     /// Optional. Sender, empty for messages sent to channels
@@ -64,7 +68,7 @@ pub struct Message{
     pub contact: Option<Contact>,
     /// Optional. Message is a dice with random value
     pub dice: Option<Dice>,
-    /// Optional. Message is a game, information about the game. More about games 
+    /// Optional. Message is a game, information about the game. More about games
     pub game: Option<Game>,
     /// Optional. Message is a native poll, information about the poll
     pub poll: Option<Poll>,
@@ -94,16 +98,16 @@ pub struct Message{
     pub migrate_from_chat_id: Option<i32>,
     /// Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
     pub pinned_message: Option<Box<Message>>,
-    /// Optional. Message is an invoice for a payment, information about the invoice. More about payments 
+    /// Optional. Message is an invoice for a payment, information about the invoice. More about payments
     pub invoice: Option<Invoice>,
-    /// Optional. Message is a service message about a successful payment, information about the payment. More about payments 
+    /// Optional. Message is a service message about a successful payment, information about the payment. More about payments
     pub successful_payment: Option<SuccessfulPayment>,
-    /// Optional. The domain name of the website on which the user has logged in. More about Telegram Login 
+    /// Optional. The domain name of the website on which the user has logged in. More about Telegram Login
     pub connected_website: Option<String>,
     /// Optional. Telegram Passport data
     pub passport_data: Option<PassportData>,
     /// Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
     pub proximity_alert_triggered: Option<ProximityAlertTriggered>,
     /// Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
-    pub reply_markup: Option<InlineKeyboardMarkup>
+    pub reply_markup: Option<InlineKeyboardMarkup>,
 }

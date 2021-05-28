@@ -3,7 +3,7 @@ use crate::types::{Location, User};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQuery{
+pub struct InlineQuery {
     /// Unique identifier for this query
     pub id: String,
     /// Sender
@@ -13,5 +13,5 @@ pub struct InlineQuery{
     /// Text of the query (up to 256 characters)
     pub query: String,
     /// Offset of the results to be returned, can be controlled by the bot
-    pub offset: String
+    pub offset: String,
 }

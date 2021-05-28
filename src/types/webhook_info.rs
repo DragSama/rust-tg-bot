@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct WebhookInfo{
+pub struct WebhookInfo {
     /// Webhook URL, may be empty if webhook is not set up
     pub url: String,
     /// True, if a custom certificate was provided for webhook certificate checks
@@ -17,5 +17,5 @@ pub struct WebhookInfo{
     /// Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
     pub max_connections: Option<i32>,
     /// Optional. A list of update types the bot is subscribed to. Defaults to all update types
-    pub allowed_updates: Option<Vec<String>>
+    pub allowed_updates: Option<Vec<String>>,
 }

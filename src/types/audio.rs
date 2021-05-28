@@ -3,7 +3,7 @@ use crate::types::{File, PhotoSize};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Audio{
+pub struct Audio {
     /// Identifier for this file, which can be used to download or reuse the file
     pub file_id: String,
     /// Unique identifier for this file, which is supposed to be the same over time and for different bots. Can't be used to download or reuse the file.
@@ -21,5 +21,5 @@ pub struct Audio{
     /// Optional. File size
     pub file_size: Option<i32>,
     /// Optional. Thumbnail of the album cover to which the music file belongs
-    pub thumb: Option<PhotoSize>
+    pub thumb: Option<PhotoSize>,
 }

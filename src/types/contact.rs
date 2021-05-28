@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Contact{
+pub struct Contact {
     /// Contact's phone number
     pub phone_number: String,
     /// Contact's first name
@@ -11,5 +11,5 @@ pub struct Contact{
     /// Optional. Contact's user identifier in Telegram
     pub user_id: Option<i32>,
     /// Optional. Additional data about the contact in the form of a vCard
-    pub vcard: Option<String>
+    pub vcard: Option<String>,
 }

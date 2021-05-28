@@ -1,9 +1,9 @@
-use crate::types::{Location};
+use crate::types::Location;
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Venue{
+pub struct Venue {
     /// Venue location. Can't be a live location
     pub location: Location,
     /// Name of the venue
@@ -17,5 +17,5 @@ pub struct Venue{
     /// Optional. Google Places identifier of the venue
     pub google_place_id: Option<String>,
     /// Optional. Google Places type of the venue. (See supported types.)
-    pub google_place_type: Option<String>
+    pub google_place_type: Option<String>,
 }

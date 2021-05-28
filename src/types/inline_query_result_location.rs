@@ -1,9 +1,11 @@
-use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Location, Message};
+use crate::types::{
+    InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Location, Message,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQueryResultLocation{
+pub struct InlineQueryResultLocation {
     /// Type of the result, must be location
     pub r#type: String,
     /// Unique identifier for this result, 1-64 Bytes
@@ -31,5 +33,5 @@ pub struct InlineQueryResultLocation{
     /// Optional. Thumbnail width
     pub thumb_width: Option<i32>,
     /// Optional. Thumbnail height
-    pub thumb_height: Option<i32>
+    pub thumb_height: Option<i32>,
 }

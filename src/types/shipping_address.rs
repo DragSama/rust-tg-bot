@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct ShippingAddress{
+pub struct ShippingAddress {
     /// ISO 3166-1 alpha-2 country code
     pub country_code: String,
     /// State, if applicable
@@ -13,5 +13,5 @@ pub struct ShippingAddress{
     /// Second line for the address
     pub street_line2: String,
     /// Address post code
-    pub post_code: String
+    pub post_code: String,
 }

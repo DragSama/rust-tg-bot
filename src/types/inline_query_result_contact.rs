@@ -1,9 +1,11 @@
-use crate::types::{Contact, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message};
+use crate::types::{
+    Contact, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQueryResultContact{
+pub struct InlineQueryResultContact {
     /// Type of the result, must be contact
     pub r#type: String,
     /// Unique identifier for this result, 1-64 Bytes
@@ -25,5 +27,5 @@ pub struct InlineQueryResultContact{
     /// Optional. Thumbnail width
     pub thumb_width: Option<i32>,
     /// Optional. Thumbnail height
-    pub thumb_height: Option<i32>
+    pub thumb_height: Option<i32>,
 }

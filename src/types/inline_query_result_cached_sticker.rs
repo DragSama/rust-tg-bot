@@ -1,9 +1,11 @@
-use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, Sticker};
+use crate::types::{
+    InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, Sticker,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQueryResultCachedSticker{
+pub struct InlineQueryResultCachedSticker {
     /// Type of the result, must be sticker
     pub r#type: String,
     /// Unique identifier for this result, 1-64 bytes
@@ -13,5 +15,5 @@ pub struct InlineQueryResultCachedSticker{
     /// Optional. Inline keyboard attached to the message
     pub reply_markup: Option<InlineKeyboardMarkup>,
     /// Optional. Content of the message to be sent instead of the sticker
-    pub input_message_content: Option<InputMessageContent>
+    pub input_message_content: Option<InputMessageContent>,
 }

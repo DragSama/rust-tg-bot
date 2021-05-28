@@ -1,4 +1,4 @@
-use crate::types::{Game};
+use crate::types::Game;
 
 use serde::{Deserialize, Serialize};
 

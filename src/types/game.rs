@@ -3,7 +3,7 @@ use crate::types::{Animation, Message, MessageEntity, PhotoSize};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Game{
+pub struct Game {
     /// Title of the game
     pub title: String,
     /// Description of the game
@@ -15,5 +15,5 @@ pub struct Game{
     /// Optional. Special entities that appear in text, such as usernames, URLs, bot commands, etc.
     pub text_entities: Option<Vec<MessageEntity>>,
     /// Optional. Animation that will be displayed in the game message in chats. Upload via BotFather
-    pub animation: Option<Animation>
+    pub animation: Option<Animation>,
 }

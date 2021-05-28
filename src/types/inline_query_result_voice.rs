@@ -1,9 +1,12 @@
-use crate::types::{InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity, Voice};
+use crate::types::{
+    InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message,
+    MessageEntity, Voice,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQueryResultVoice{
+pub struct InlineQueryResultVoice {
     /// Type of the result, must be voice
     pub r#type: String,
     /// Unique identifier for this result, 1-64 bytes
@@ -23,5 +26,5 @@ pub struct InlineQueryResultVoice{
     /// Optional. Inline keyboard attached to the message
     pub reply_markup: Option<InlineKeyboardMarkup>,
     /// Optional. Content of the message to be sent instead of the voice recording
-    pub input_message_content: Option<InputMessageContent>
+    pub input_message_content: Option<InputMessageContent>,
 }

@@ -3,7 +3,7 @@ use crate::types::{OrderInfo, User};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct PreCheckoutQuery{
+pub struct PreCheckoutQuery {
     /// Unique query identifier
     pub id: String,
     /// User who sent the query
@@ -17,5 +17,5 @@ pub struct PreCheckoutQuery{
     /// Optional. Identifier of the shipping option chosen by the user
     pub shipping_option_id: Option<String>,
     /// Optional. Order info provided by the user
-    pub order_info: Option<OrderInfo>
+    pub order_info: Option<OrderInfo>,
 }

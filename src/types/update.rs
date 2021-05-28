@@ -1,9 +1,12 @@
-use crate::types::{CallbackQuery, ChosenInlineResult, InlineQuery, Message, Poll, PollAnswer, PreCheckoutQuery, ShippingQuery};
+use crate::types::{
+    CallbackQuery, ChosenInlineResult, InlineQuery, Message, Poll, PollAnswer, PreCheckoutQuery,
+    ShippingQuery,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct Update{
+pub struct Update {
     /// The update's unique identifier. Update identifiers start from a certain positive number and increase sequentially. This ID becomes especially handy if you're using Webhooks, since it allows you to ignore repeated updates or to restore the correct update sequence, should they get out of order. If there are no new updates for at least a week, then identifier of the next update will be chosen randomly instead of sequentially.
     pub update_id: i64,
     /// Optional. New incoming message of any kind  text, photo, sticker, etc.
@@ -27,11 +30,11 @@ pub struct Update{
     /// Optional. New poll state. Bots receive only updates about stopped polls and polls, which are sent by the bot
     pub poll: Option<Poll>,
     /// Optional. A user changed their answer in a non-anonymous poll. Bots receive new votes only in polls that were sent by the bot itself.
-    pub poll_answer: Option<PollAnswer>
+    pub poll_answer: Option<PollAnswer>,
 }
 
 #[derive(Debug, Deserialize)]
 pub struct Updates {
     pub ok: bool,
-    pub result: Vec<Update>
+    pub result: Vec<Update>,
 }

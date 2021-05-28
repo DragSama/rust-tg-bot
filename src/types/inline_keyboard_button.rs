@@ -3,7 +3,7 @@ use crate::types::{CallbackGame, Game, KeyboardButton, LoginUrl};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineKeyboardButton{
+pub struct InlineKeyboardButton {
     /// Label text on the button
     pub text: String,
     /// Optional. HTTP or tg:// url to be opened when button is pressed
@@ -19,5 +19,5 @@ pub struct InlineKeyboardButton{
     /// Optional. Description of the game that will be launched when the user presses the button.NOTE: This type of button must always be the first button in the first row.
     pub callback_game: Option<CallbackGame>,
     /// Optional. Specify True, to send a Pay button.NOTE: This type of button must always be the first button in the first row.
-    pub pay: Option<bool>
+    pub pay: Option<bool>,
 }

@@ -3,7 +3,7 @@ use crate::types::{Message, Venue};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InputVenueMessageContent{
+pub struct InputVenueMessageContent {
     /// Latitude of the venue in degrees
     pub latitude: f64,
     /// Longitude of the venue in degrees
@@ -19,5 +19,5 @@ pub struct InputVenueMessageContent{
     /// Optional. Google Places identifier of the venue
     pub google_place_id: Option<String>,
     /// Optional. Google Places type of the venue. (See supported types.)
-    pub google_place_type: Option<String>
+    pub google_place_type: Option<String>,
 }

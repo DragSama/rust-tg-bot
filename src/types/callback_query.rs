@@ -3,7 +3,7 @@ use crate::types::{Game, Message, User};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct CallbackQuery{
+pub struct CallbackQuery {
     /// Unique identifier for this query
     pub id: String,
     /// Sender
@@ -17,5 +17,5 @@ pub struct CallbackQuery{
     /// Optional. Data associated with the callback button. Be aware that a bad client can send arbitrary data in this field.
     pub data: Option<String>,
     /// Optional. Short name of a Game to be returned, serves as the unique identifier for the game
-    pub game_short_name: Option<String>
+    pub game_short_name: Option<String>,
 }

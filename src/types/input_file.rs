@@ -1,4 +1,4 @@
-use crate::types::{File};
+use crate::types::File;
 
 use serde::{Deserialize, Serialize};
 

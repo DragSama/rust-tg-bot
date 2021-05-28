@@ -1,9 +1,12 @@
-use crate::types::{Document, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message, MessageEntity};
+use crate::types::{
+    Document, InlineKeyboardMarkup, InlineQuery, InlineQueryResult, InputMessageContent, Message,
+    MessageEntity,
+};
 
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize)]
-pub struct InlineQueryResultDocument{
+pub struct InlineQueryResultDocument {
     /// Type of the result, must be document
     pub r#type: String,
     /// Unique identifier for this result, 1-64 bytes
@@ -31,5 +34,5 @@ pub struct InlineQueryResultDocument{
     /// Optional. Thumbnail width
     pub thumb_width: Option<i32>,
     /// Optional. Thumbnail height
-    pub thumb_height: Option<i32>
+    pub thumb_height: Option<i32>,
 }
