@@ -2,7 +2,7 @@ use crate::types::{Location, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ChosenInlineResult {
     /// The unique identifier for the result that was chosen
     pub result_id: String,

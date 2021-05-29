@@ -5,7 +5,7 @@ use crate::types::{
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InlineQueryResultCachedGif {
     /// Type of the result, must be gif
     pub r#type: String,

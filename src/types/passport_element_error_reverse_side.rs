@@ -2,7 +2,7 @@ use crate::types::PassportElementError;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct PassportElementErrorReverseSide {
     /// Error source, must be reverse_side
     pub source: String,

@@ -2,7 +2,7 @@ use crate::types::{KeyboardButtonPollType, Poll};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct KeyboardButton {
     /// Text of the button. If none of the optional fields are used, it will be sent as a message when the button is pressed
     pub text: String,

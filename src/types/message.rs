@@ -6,7 +6,7 @@ use crate::types::{
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Message {
     /// Unique message identifier inside this chat
     pub message_id: i32,

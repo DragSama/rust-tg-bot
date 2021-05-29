@@ -2,7 +2,7 @@ use crate::types::{PhotoSize, Sticker};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct StickerSet {
     /// Sticker set name
     pub name: String,

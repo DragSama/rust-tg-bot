@@ -2,7 +2,7 @@ use crate::types::{ShippingAddress, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct OrderInfo {
     /// Optional. User name
     pub name: Option<String>,

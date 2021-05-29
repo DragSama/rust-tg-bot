@@ -2,7 +2,7 @@ use crate::types::{Animation, File, InputFile, InputMedia, Message, MessageEntit
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputMediaAnimation {
     /// Type of the result, must be animation
     pub r#type: String,

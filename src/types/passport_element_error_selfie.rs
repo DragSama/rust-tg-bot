@@ -2,7 +2,7 @@ use crate::types::PassportElementError;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct PassportElementErrorSelfie {
     /// Error source, must be selfie
     pub source: String,

@@ -2,7 +2,7 @@ use crate::types::{File, InputMedia, Message, MessageEntity};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputMediaPhoto {
     /// Type of the result, must be photo
     pub r#type: String,

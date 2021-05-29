@@ -2,7 +2,7 @@ use crate::types::{File, InputFile, InputMedia, Message, MessageEntity, Video};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputMediaVideo {
     /// Type of the result, must be video
     pub r#type: String,

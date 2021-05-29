@@ -2,7 +2,7 @@ use crate::types::{Game, Message, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct CallbackQuery {
     /// Unique identifier for this query
     pub id: String,

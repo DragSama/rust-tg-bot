@@ -2,7 +2,7 @@ use crate::types::{OrderInfo, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct PreCheckoutQuery {
     /// Unique query identifier
     pub id: String,

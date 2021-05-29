@@ -2,7 +2,7 @@ use crate::types::{File, PassportElementError};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct PassportElementErrorTranslationFile {
     /// Error source, must be translation_file
     pub source: String,

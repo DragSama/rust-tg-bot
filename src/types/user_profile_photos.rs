@@ -2,7 +2,7 @@ use crate::types::{PhotoSize, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct UserProfilePhotos {
     /// Total number of profile pictures the target user has
     pub total_count: i32,

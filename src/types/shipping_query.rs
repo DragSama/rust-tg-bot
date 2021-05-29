@@ -2,7 +2,7 @@ use crate::types::{ShippingAddress, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ShippingQuery {
     /// Unique query identifier
     pub id: String,

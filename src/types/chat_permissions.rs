@@ -2,7 +2,7 @@ use crate::types::Chat;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ChatPermissions {
     /// Optional. True, if the user is allowed to send text messages, contacts, locations and venues
     pub can_send_messages: Option<bool>,

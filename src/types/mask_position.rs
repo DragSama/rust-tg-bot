@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct MaskPosition {
     /// The part of the face relative to which the mask should be placed. One of "forehead", "eyes", "mouth", or "chin".
     pub point: String,

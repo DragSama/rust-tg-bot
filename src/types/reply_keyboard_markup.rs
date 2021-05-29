@@ -2,7 +2,7 @@ use crate::types::{KeyboardButton, Message};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ReplyKeyboardMarkup {
     /// Vec<button> rows, each represented by an Vec<KeyboardButton> objects
     pub keyboard: Vec<Vec<KeyboardButton>>,

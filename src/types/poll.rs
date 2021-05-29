@@ -2,7 +2,7 @@ use crate::types::{Message, MessageEntity, PollOption};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Poll {
     /// Unique poll identifier
     pub id: String,

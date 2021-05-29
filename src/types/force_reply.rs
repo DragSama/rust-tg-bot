@@ -2,7 +2,7 @@ use crate::types::Message;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ForceReply {
     /// Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'
     pub force_reply: bool,

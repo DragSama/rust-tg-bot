@@ -3,7 +3,7 @@ use async_trait::async_trait;
 
 #[async_trait]
 pub trait Handler: Send + Sync {
-    async fn check_update(&self, update: &Update);
+    async fn check_update(&self, update: Update);
 }
 
 #[async_trait]

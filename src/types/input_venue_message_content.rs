@@ -2,7 +2,7 @@ use crate::types::{Message, Venue};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputVenueMessageContent {
     /// Latitude of the venue in degrees
     pub latitude: f64,

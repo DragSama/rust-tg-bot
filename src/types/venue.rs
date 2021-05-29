@@ -2,7 +2,7 @@ use crate::types::Location;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Venue {
     /// Venue location. Can't be a live location
     pub location: Location,

@@ -4,7 +4,7 @@ use crate::types::{
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InlineQueryResultContact {
     /// Type of the result, must be contact
     pub r#type: String,

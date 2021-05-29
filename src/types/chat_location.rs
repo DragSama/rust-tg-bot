@@ -2,7 +2,7 @@ use crate::types::{Chat, Location};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ChatLocation {
     /// The location to which the supergroup is connected. Can't be a live location.
     pub location: Location,

@@ -2,7 +2,7 @@ use crate::types::OrderInfo;
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct SuccessfulPayment {
     /// Three-letter ISO 4217 currency code
     pub currency: String,

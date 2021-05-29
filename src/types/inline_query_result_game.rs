@@ -2,7 +2,7 @@ use crate::types::{Game, InlineKeyboardMarkup, InlineQuery, InlineQueryResult};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InlineQueryResultGame {
     /// Type of the result, must be game
     pub r#type: String,

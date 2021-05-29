@@ -2,7 +2,7 @@ use crate::types::{Contact, Message};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputContactMessageContent {
     /// Contact's phone number
     pub phone_number: String,

@@ -2,7 +2,7 @@ use crate::types::{Message, MessageEntity};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputTextMessageContent {
     /// Text of the message to be sent, 1-4096 characters
     pub message_text: String,

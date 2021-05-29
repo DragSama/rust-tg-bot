@@ -2,7 +2,7 @@ use crate::types::{Document, File, InputFile, InputMedia, Message, MessageEntity
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputMediaDocument {
     /// Type of the result, must be document
     pub r#type: String,

@@ -2,7 +2,7 @@ use crate::types::{Chat, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct ChatMember {
     /// Information about the user
     pub user: User,

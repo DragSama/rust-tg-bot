@@ -2,7 +2,7 @@ use crate::types::{Audio, File, InputFile, InputMedia, Message, MessageEntity};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InputMediaAudio {
     /// Type of the result, must be audio
     pub r#type: String,

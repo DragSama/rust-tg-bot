@@ -2,7 +2,7 @@ use crate::types::{File, PhotoSize};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct Document {
     /// Identifier for this file, which can be used to download or reuse the file
     pub file_id: String,

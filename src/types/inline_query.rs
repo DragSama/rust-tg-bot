@@ -2,7 +2,7 @@ use crate::types::{Location, User};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InlineQuery {
     /// Unique identifier for this query
     pub id: String,

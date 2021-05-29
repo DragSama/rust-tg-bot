@@ -2,7 +2,7 @@ use crate::types::{CallbackGame, Game, KeyboardButton, LoginUrl};
 
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Deserialize, Serialize)]
+#[derive(Debug, Deserialize, Serialize, Clone)]
 pub struct InlineKeyboardButton {
     /// Label text on the button
     pub text: String,
