@@ -11,7 +11,7 @@ pub mod traits;
 
 use crate::{types::{Update, Updates}, traits::dispatcher::{Dispatcher as dp_trait, Handler}};
 use async_trait::async_trait;
-use std::{cmp::max};
+use std::cmp::max;
 
 pub struct Bot {
     pub token: String
@@ -25,15 +25,22 @@ impl Bot {
     }
 }
 
-pub struct CommandHandler {
+pub struct CommandHandler<F> 
+where
+    F: std::future::Future + Send
+{
     pub command: String,
-    pub func: Fn(&Update)
+    pub func: fn(&Update) -> F
 }
 
 #[async_trait]
-impl Handler for CommandHandler {
+impl<F> Handler for CommandHandler<F> 
+where
+    F: std::future::Future + Send
+{
     async fn check_update(&self, update: &Update){
-        println!("{:#?}", update.message.as_ref().unwrap().chat)
+        println!("{:#?}", update.message.as_ref().unwrap().chat);
+        (self.func)(update).await;
     }
 }
 
