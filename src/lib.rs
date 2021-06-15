@@ -8,47 +8,72 @@ extern crate serde_json;
 pub mod types;
 pub mod methods;
 pub mod traits;
+pub mod error;
 
-use crate::{types::{Update, Updates}, traits::dispatcher::{Dispatcher as dp_trait, Handler}};
+use crate::{types::{Update, Updates}, traits::dispatcher::{Dispatcher as dp_trait, Handler}, error::Error, methods::GetUpdates};
 use async_trait::async_trait;
 use std::cmp::max;
 
 pub struct Bot {
-    pub token: String
+    pub token: String,
+	base_endpoint: String,
+	reqwest_client: reqwest::Client
 }
 
 impl Bot {
     pub fn new(bot_token: &str) -> Self {
         Self {
-            token: bot_token.into()
+            token: bot_token.into(),
+			base_endpoint: format!("https://api.telegram.org/bot{}/", bot_token).into(),
+			reqwest_client: reqwest::Client::new()
         }
     }
+	async fn send(&self, method: &str, body: String) -> Result<reqwest::Response, Error> {
+		let url = format!("{}{}", self.base_endpoint, method);
+		let response = self.reqwest_client.post(url)
+			.body(body)
+			.send()
+			.await?;
+		Ok(response)
+	}
 }
 
-pub struct CommandHandler<F> 
+
+
+pub struct CommandHandler<'a, F> 
 where
-    F: std::future::Future + Send
+    F: std::future::Future + Send + 'static
 {
-    pub command: String,
+    pub command: &'a str,
     pub func: fn(Update) -> F
 }
 
-#[async_trait]
-impl<F> Handler for CommandHandler<F> 
+impl<F> Clone for CommandHandler<'_, F>
 where
-    F: std::future::Future + Send
+    F: std::future::Future + Send + 'static,
 {
-    async fn check_update(&self, update: Update){
-        let message = match update.message {
-            Some(ref m) => m,
-            _ => return ()
-        };
-        if message.text.as_ref().unwrap_or(&"".to_string()).starts_with(&self.command){
-            (self.func)(update).await;
-        }
+    fn clone(&self) -> Self {
+        Self { command: self.command.clone(), func: self.func.clone() }
     }
 }
 
+#[async_trait]
+impl<F> Handler for CommandHandler<'_, F> 
+where
+    F: std::future::Future + Send + 'static
+{
+    async fn check_update(&self, update: Update){
+		let cloned_update = update.clone();
+		if update.message.is_some() {
+			let message = update.message.unwrap();
+			if message.text.is_some() && message.text.unwrap().starts_with(&format!("{}{}", '/', self.command)){
+				(self.func)(cloned_update).await;
+			}
+		}		
+    }
+}
+
+#[derive(Clone)]
 pub struct Dispatcher {
     pub handlers: Vec<Box<dyn Handler>>
 }
@@ -67,16 +92,19 @@ impl dp_trait for Dispatcher {
         self.handlers.push(handler);
     }
     async fn handle_update(&self, update: Update){
-        for handler in self.handlers.iter(){
-	handler.check_update(update.clone());
+        for handler in self.handlers.clone() {
+			let up = update.clone();
+			tokio::spawn(async move {
+				handler.check_update(up).await;
+			});
         }
     }
 }
 
 pub struct Updater {
     pub bot: Bot,
-    pub base_endpoint: String,
-    pub reqwest_client: reqwest::Client,
+    base_endpoint: String,
+    reqwest_client: reqwest::Client,
     pub dispatcher: Dispatcher
 }
 
@@ -90,15 +118,21 @@ impl Updater {
         }
     }
 
-    pub async fn start_polling(&self){
+    pub async fn start_polling(&self) -> Result<(), Error>{
         let mut offset: i64 = 0;
         loop {
-            let url = format!("{}{}?offset={}?timeout=10", self.base_endpoint, "getUpdates", offset+1);
-            let result = self.reqwest_client.get(&url).send().await.unwrap().text().await.unwrap();
-            let resp = serde_json::from_str::<Updates>(&result).unwrap();
+			let text = self.bot.send(
+				"getUpdates",
+				serde_json::to_string(&GetUpdates{offset: Some(offset+1), limit: None, timeout: Some(10), allowed_updates: None}).unwrap()
+			).await?.text().await?;
+			// println!("{:#?}", response);
+            // let url = format!("{}{}?offset={}?timeout=10", self.base_endpoint, "getUpdates", offset+1);
+            // let result = self.reqwest_client.get(&url).send().await.unwrap().text().await.unwrap();
+            let resp = serde_json::from_str::<Updates>(&text).unwrap();
+			println!("offset: {}", offset);
             for update in resp.result {
-	offset = max(offset, update.update_id);
-                self.dispatcher.handle_update(update).await;
+				offset = max(offset, update.update_id);
+				self.dispatcher.handle_update(update).await;
             }
         }
     }
