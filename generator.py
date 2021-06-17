@@ -1,3 +1,10 @@
+# ###########################################################
+# ###########################################################
+#         Highly unoptimized and untested code below 
+#         Edit, View or run at your own risk kthx
+# ###########################################################
+# ###########################################################
+
 from pathlib import Path
 
 import argparse
@@ -30,6 +37,8 @@ def convert(text):
     )
     return text
 
+
+# I don't recommend running this ever, In worse case scenario it will fill whole types folder with random stuff (also https://imgur.com/4GptC5V) 
 class TypeGen:
     def __init__(self, path, replace, verbose, to_ignore):
         if path.endswith("/") or path.endswith("\\"):
