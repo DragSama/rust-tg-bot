@@ -2,7 +2,7 @@
 Telegram Bot API wrapper, The design is inspired from [Python Telegram Bot](https://github.com/python-telegram-bot/python-telegram-bot).
 
 ## Note
-This project is a work in progress.
+This project is a work in progress. See issues for stuff that needs to be added.
 
 ## Example
 ```rust
