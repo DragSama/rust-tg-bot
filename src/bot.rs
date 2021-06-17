@@ -31,7 +31,7 @@ impl Bot {
         Ok(response)
     }
 
-	pub async fn send_message(&self, chat_id: i64, text: String) -> SendMessage<'_> {
-		SendMessage::new(self, chat_id, text)
-	}
+    pub async fn send_message(&self, chat_id: i64, text: String) -> SendMessage<'_> {
+        SendMessage::new(self, chat_id, text)
+    }
 }

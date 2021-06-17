@@ -11,9 +11,9 @@ pub struct Updater {
 
 impl Updater {
     pub fn new(bot_token: &str) -> Self {
-		let bot = Bot::new(bot_token.into());
+        let bot = Bot::new(bot_token.into());
         Self {
-			dispatcher: Dispatcher::new(bot.clone()),
+            dispatcher: Dispatcher::new(bot.clone()),
             bot: bot,
         }
     }

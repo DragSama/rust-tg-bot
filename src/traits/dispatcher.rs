@@ -1,4 +1,4 @@
-use crate::{types::Update, bot::Bot};
+use crate::{bot::Bot, types::Update};
 use async_trait::async_trait;
 use dyn_clone::{clone_trait_object, DynClone};
 

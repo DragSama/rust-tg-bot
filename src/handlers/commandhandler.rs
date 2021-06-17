@@ -1,4 +1,4 @@
-use crate::{traits::dispatcher::Handler, types::Update, bot::Bot};
+use crate::{bot::Bot, traits::dispatcher::Handler, types::Update};
 use async_trait::async_trait;
 
 pub struct CommandHandler<'a, F>
