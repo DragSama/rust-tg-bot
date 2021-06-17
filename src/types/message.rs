@@ -1,7 +1,8 @@
 use crate::types::{
     Animation, Audio, Chat, Contact, Dice, Document, Game, InlineKeyboardMarkup, Invoice, Location,
-    MessageEntity, PassportData, PhotoSize, Poll, ProximityAlertTriggered, Sticker,
-    SuccessfulPayment, User, Venue, Video, VideoNote, Voice,
+    MessageAutoDeleteTimerChanged, MessageEntity, PassportData, PhotoSize, Poll,
+    ProximityAlertTriggered, Sticker, SuccessfulPayment, User, Venue, Video, VideoNote, Voice,
+    VoiceChatEnded, VoiceChatParticipantsInvited, VoiceChatScheduled, VoiceChatStarted,
 };
 
 use serde::{Deserialize, Serialize};
@@ -92,9 +93,11 @@ pub struct Message {
     pub supergroup_chat_created: Option<bool>,
     /// Optional. Service message: the channel has been created. This field can't be received in a message coming through updates, because bot can't be a member of a channel when it is created. It can only be found in reply_to_message if someone replies to a very first message in a channel.
     pub channel_chat_created: Option<bool>,
-    /// Optional. The group has been migrated to a supergroup with the specified identifier. This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
+    /// Optional. Service message: auto-delete timer settings changed in the chat
+    pub message_auto_delete_timer_changed: Option<MessageAutoDeleteTimerChanged>,
+    /// Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
     pub migrate_to_chat_id: Option<i32>,
-    /// Optional. The supergroup has been migrated from a group with the specified identifier. This number may be greater than 32 bits and some programming languages may have difficulty/silent defects in interpreting it. But it is smaller than 52 bits, so a signed 64 bit integer or double-precision float type are safe for storing this identifier.
+    /// Optional. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
     pub migrate_from_chat_id: Option<i32>,
     /// Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
     pub pinned_message: Option<Box<Message>>,
@@ -108,6 +111,14 @@ pub struct Message {
     pub passport_data: Option<PassportData>,
     /// Optional. Service message. A user in the chat triggered another user's proximity alert while sharing Live Location.
     pub proximity_alert_triggered: Option<ProximityAlertTriggered>,
+    /// Optional. Service message: voice chat scheduled
+    pub voice_chat_scheduled: Option<VoiceChatScheduled>,
+    /// Optional. Service message: voice chat started
+    pub voice_chat_started: Option<VoiceChatStarted>,
+    /// Optional. Service message: voice chat ended
+    pub voice_chat_ended: Option<VoiceChatEnded>,
+    /// Optional. Service message: new participants invited to a voice chat
+    pub voice_chat_participants_invited: Option<VoiceChatParticipantsInvited>,
     /// Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
     pub reply_markup: Option<InlineKeyboardMarkup>,
 }

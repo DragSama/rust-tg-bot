@@ -1,6 +1,6 @@
 use crate::types::{
-    CallbackQuery, ChosenInlineResult, InlineQuery, Message, Poll, PollAnswer, PreCheckoutQuery,
-    ShippingQuery,
+    CallbackQuery, Chat, ChatMember, ChatMemberUpdated, ChosenInlineResult, InlineQuery, Message,
+    Poll, PollAnswer, PreCheckoutQuery, ShippingQuery,
 };
 
 use serde::{Deserialize, Serialize};

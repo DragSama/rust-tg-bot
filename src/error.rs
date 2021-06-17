@@ -1,5 +1,8 @@
 use crate::types::Chat;
+
 use reqwest::Error as ReqwestError;
+use serde_json::Error as JsonError;
+
 use std::fmt;
 
 #[derive(Debug)]
@@ -13,7 +16,10 @@ pub enum Error {
     RetryAfter(i64),
     Conflict(String),
     RequestError(ReqwestError),
+    SerdeJsonError(JsonError),
 }
+
+pub type Result<T> = std::result::Result<T, Error>;
 
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -35,6 +41,7 @@ impl fmt::Display for Error {
             ),
             Self::Conflict(msg) => write!(f, "{}", msg),
             Self::TimedOut => write!(f, "Timed Out"),
+            Self::SerdeJsonError(obj) => write!(f, "Failed to parse or construct JSON: {:?}", obj),
         }
     }
 }
@@ -48,5 +55,11 @@ impl From<String> for Error {
 impl From<ReqwestError> for Error {
     fn from(error: ReqwestError) -> Self {
         Self::RequestError(error)
+    }
+}
+
+impl From<JsonError> for Error {
+    fn from(error: JsonError) -> Self {
+        Self::SerdeJsonError(error)
     }
 }

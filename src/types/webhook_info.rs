@@ -16,6 +16,6 @@ pub struct WebhookInfo {
     pub last_error_message: Option<String>,
     /// Optional. Maximum allowed number of simultaneous HTTPS connections to the webhook for update delivery
     pub max_connections: Option<i32>,
-    /// Optional. A list of update types the bot is subscribed to. Defaults to all update types
+    /// Optional. A list of update types the bot is subscribed to. Defaults to all update types except chat_member
     pub allowed_updates: Option<Vec<String>>,
 }

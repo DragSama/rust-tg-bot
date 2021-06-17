@@ -1,8 +1,8 @@
 use crate::types::{
-    Animation, Audio, CallbackQuery, Chat, ChatMember, ChatPermissions, ChatPhoto, Contact, Dice,
-    Document, File, Game, GameHighScore, InlineQuery, Invoice, Location, Message, PassportData,
-    Poll, PreCheckoutQuery, ShippingQuery, Sticker, StickerSet, Update, User, UserProfilePhotos,
-    Venue, Video, VideoNote, Voice,
+    Animation, Audio, CallbackQuery, Chat, ChatInviteLink, ChatMember, ChatPermissions, ChatPhoto,
+    Contact, Dice, Document, File, Game, GameHighScore, InlineQuery, Invoice, Location, Message,
+    PassportData, Poll, PreCheckoutQuery, ShippingQuery, Sticker, StickerSet, Update, User,
+    UserProfilePhotos, Venue, Video, VideoNote, Voice,
 };
 mod add_sticker_to_set;
 mod answer_callback_query;
@@ -10,12 +10,14 @@ mod answer_inline_query;
 mod answer_pre_checkout_query;
 mod answer_shipping_query;
 mod copy_message;
+mod create_chat_invite_link;
 mod create_new_sticker_set;
 mod delete_chat_photo;
 mod delete_chat_sticker_set;
 mod delete_message;
 mod delete_sticker_from_set;
 mod delete_webhook;
+mod edit_chat_invite_link;
 mod edit_message_caption;
 mod edit_message_live_location;
 mod edit_message_media;
@@ -37,6 +39,7 @@ mod leave_chat;
 mod pin_chat_message;
 mod promote_chat_member;
 mod restrict_chat_member;
+mod revoke_chat_invite_link;
 mod send_animation;
 mod send_audio;
 mod send_chat_action;
@@ -80,12 +83,14 @@ pub use answer_inline_query::AnswerInlineQuery;
 pub use answer_pre_checkout_query::AnswerPreCheckoutQuery;
 pub use answer_shipping_query::AnswerShippingQuery;
 pub use copy_message::CopyMessage;
+pub use create_chat_invite_link::CreateChatInviteLink;
 pub use create_new_sticker_set::CreateNewStickerSet;
 pub use delete_chat_photo::DeleteChatPhoto;
 pub use delete_chat_sticker_set::DeleteChatStickerSet;
 pub use delete_message::DeleteMessage;
 pub use delete_sticker_from_set::DeleteStickerFromSet;
 pub use delete_webhook::DeleteWebhook;
+pub use edit_chat_invite_link::EditChatInviteLink;
 pub use edit_message_caption::EditMessageCaption;
 pub use edit_message_live_location::EditMessageLiveLocation;
 pub use edit_message_media::EditMessageMedia;
@@ -107,6 +112,7 @@ pub use leave_chat::LeaveChat;
 pub use pin_chat_message::PinChatMessage;
 pub use promote_chat_member::PromoteChatMember;
 pub use restrict_chat_member::RestrictChatMember;
+pub use revoke_chat_invite_link::RevokeChatInviteLink;
 pub use send_animation::SendAnimation;
 pub use send_audio::SendAudio;
 pub use send_chat_action::SendChatAction;

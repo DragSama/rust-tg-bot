@@ -14,12 +14,16 @@ pub struct ChatMember {
     pub is_anonymous: Option<bool>,
     /// Optional. Administrators only. True, if the bot is allowed to edit administrator privileges of that user
     pub can_be_edited: Option<bool>,
+    /// Optional. Administrators only. True, if the administrator can access the chat event log, chat statistics, message statistics in channels, see channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other administrator privilege
+    pub can_manage_chat: Option<bool>,
     /// Optional. Administrators only. True, if the administrator can post in the channel; channels only
     pub can_post_messages: Option<bool>,
     /// Optional. Administrators only. True, if the administrator can edit messages of other users and can pin messages; channels only
     pub can_edit_messages: Option<bool>,
     /// Optional. Administrators only. True, if the administrator can delete messages of other users
     pub can_delete_messages: Option<bool>,
+    /// Optional. Administrators only. True, if the administrator can manage voice chats
+    pub can_manage_voice_chats: Option<bool>,
     /// Optional. Administrators only. True, if the administrator can restrict, ban or unban chat members
     pub can_restrict_members: Option<bool>,
     /// Optional. Administrators only. True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that he has promoted, directly or indirectly (promoted by administrators that were appointed by the user)
