@@ -9,13 +9,13 @@ pub struct RevokeChatInviteLink<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier of the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// The invite link to revoke
     pub invite_link: String,
 }
 
 impl<'a> RevokeChatInviteLink<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, invite_link: String) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, invite_link: String) -> Self {
         Self {
             chat_id: chat_id,
             invite_link: invite_link,
@@ -27,7 +27,7 @@ impl<'a> RevokeChatInviteLink<'a> {
         let resp = self.bot.send("revokeChatInviteLink", Some(string)).await?;
         Ok(serde_json::from_str::<ChatInviteLink>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

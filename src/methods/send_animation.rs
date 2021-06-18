@@ -11,7 +11,7 @@ pub struct SendAnimation<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. More info on Sending Files
     pub animation: InputFile,
     /// Duration of sent animation in seconds
@@ -50,7 +50,7 @@ pub struct SendAnimation<'a> {
 }
 
 impl<'a> SendAnimation<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, animation: InputFile) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, animation: InputFile) -> Self {
         Self {
             chat_id: chat_id,
             animation: animation,
@@ -73,7 +73,7 @@ impl<'a> SendAnimation<'a> {
         let resp = self.bot.send("sendAnimation", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

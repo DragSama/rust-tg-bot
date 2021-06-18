@@ -12,7 +12,7 @@ pub struct GetGameHighScores<'a> {
     pub user_id: i32,
     /// Required if inline_message_id is not specified. Unique identifier for the target chat
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub chat_id: Option<i32>,
+    pub chat_id: Option<i64>,
     /// Required if inline_message_id is not specified. Identifier of the sent message
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_id: Option<i32>,
@@ -42,7 +42,7 @@ impl<'a> GetGameHighScores<'a> {
         self.user_id = user_id;
         self
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = Some(chat_id);
         self
     }

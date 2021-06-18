@@ -9,7 +9,7 @@ pub struct SendGame<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Short name of the game, serves as the unique identifier for the game. Set up your games via Botfather.
     pub game_short_name: String,
     /// Sends the message silently. Users will receive a notification with no sound.
@@ -27,7 +27,7 @@ pub struct SendGame<'a> {
 }
 
 impl<'a> SendGame<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, game_short_name: String) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, game_short_name: String) -> Self {
         Self {
             chat_id: chat_id,
             game_short_name: game_short_name,
@@ -43,7 +43,7 @@ impl<'a> SendGame<'a> {
         let resp = self.bot.send("sendGame", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

@@ -9,7 +9,7 @@ pub struct SendVideoNote<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Video note to send. Pass a file_id as String to send a video note that exists on the Telegram servers (recommended) or upload a new video using multipart/form-data. More info on Sending Files . Sending video notes by a URL is currently unsupported
     pub video_note: InputFile,
     /// Duration of sent video in seconds
@@ -36,7 +36,7 @@ pub struct SendVideoNote<'a> {
 }
 
 impl<'a> SendVideoNote<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, video_note: InputFile) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, video_note: InputFile) -> Self {
         Self {
             chat_id: chat_id,
             video_note: video_note,
@@ -55,7 +55,7 @@ impl<'a> SendVideoNote<'a> {
         let resp = self.bot.send("sendVideoNote", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

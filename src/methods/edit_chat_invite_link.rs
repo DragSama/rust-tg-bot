@@ -9,7 +9,7 @@ pub struct EditChatInviteLink<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// The invite link to edit
     pub invite_link: String,
     /// Point in time (Unix timestamp) when the link will expire
@@ -21,7 +21,7 @@ pub struct EditChatInviteLink<'a> {
 }
 
 impl<'a> EditChatInviteLink<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, invite_link: String) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, invite_link: String) -> Self {
         Self {
             chat_id: chat_id,
             invite_link: invite_link,
@@ -35,7 +35,7 @@ impl<'a> EditChatInviteLink<'a> {
         let resp = self.bot.send("editChatInviteLink", Some(string)).await?;
         Ok(serde_json::from_str::<ChatInviteLink>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

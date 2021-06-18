@@ -1,20 +1,17 @@
-// Simple bot that has one command /echo, that replies with the text user sent
+// Simple bot that just prints the update is recieves
 //
 // To run this example use:
 // cargo run --example echo
 // Set "TOKEN" env var before that.
 
 use rust_tg_bot::{
-    bot::Bot, error::Result, handlers::CommandHandler, traits::dispatcher::Dispatcher,
+    bot::Bot, error::Result, handlers::RawHandler, traits::dispatcher::Dispatcher,
     types::Update, updater::Updater,
 };
 use std::env;
 
-async fn echo(update: Update, bot: Bot) -> Result<()> {
-    let message = update.message.unwrap();
-    bot.send_message(message.chat.id, message.text.unwrap())
-        .send()
-        .await?;
+async fn raw_handler(update: Update, bot: Bot) -> Result<()> {
+    println!("Got update: {:#?}", update);
     Ok(())
 }
 
@@ -29,11 +26,8 @@ async fn main() -> Result<()> {
     // Dispatcher - maintains a list of handlers, is called by Updater
     // Handler - checks update to see if its valid and then call the function
 
-    // Here we add a new handler "CommandHandler" to dispatcher
-    updater.dispatcher.add_handler(Box::new(CommandHandler {
-        command: "echo",
-        func: echo,
-    }));
+    // Raw handler will call function for every update it gets
+    updater.dispatcher.add_handler(Box::new(RawHandler { func: raw_handler }));
     // Starts listening for updates using long-polling method
     updater.start_polling().await?;
     Ok(())

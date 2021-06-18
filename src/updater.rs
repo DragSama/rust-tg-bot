@@ -21,7 +21,7 @@ impl Updater {
     pub async fn start_polling(&self) -> Result<()> {
         let mut offset: i64 = 0;
         loop {
-            let updates = GetUpdates::new(&self.bot)
+            let updates = self.bot.get_updates()
                 .offset(offset + 1)
                 .timeout(10)
                 .send()

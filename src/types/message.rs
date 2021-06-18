@@ -96,9 +96,9 @@ pub struct Message {
     /// Optional. Service message: auto-delete timer settings changed in the chat
     pub message_auto_delete_timer_changed: Option<MessageAutoDeleteTimerChanged>,
     /// Optional. The group has been migrated to a supergroup with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-    pub migrate_to_chat_id: Option<i32>,
+    pub migrate_to_chat_id: Option<i64>,
     /// Optional. The supergroup has been migrated from a group with the specified identifier. This number may have more than 32 significant bits and some programming languages may have difficulty/silent defects in interpreting it. But it has at most 52 significant bits, so a signed 64-bit integer or double-precision float type are safe for storing this identifier.
-    pub migrate_from_chat_id: Option<i32>,
+    pub migrate_from_chat_id: Option<i64>,
     /// Optional. Specified message was pinned. Note that the Message object in this field will not contain further reply_to_message fields even if it is itself a reply.
     pub pinned_message: Option<Box<Message>>,
     /// Optional. Message is an invoice for a payment, information about the invoice. More about payments

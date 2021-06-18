@@ -9,7 +9,7 @@ pub struct SendVideo<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Video to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video using multipart/form-data. More info on Sending Files
     pub video: InputFile,
     /// Duration of sent video in seconds
@@ -51,7 +51,7 @@ pub struct SendVideo<'a> {
 }
 
 impl<'a> SendVideo<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, video: InputFile) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, video: InputFile) -> Self {
         Self {
             chat_id: chat_id,
             video: video,
@@ -75,7 +75,7 @@ impl<'a> SendVideo<'a> {
         let resp = self.bot.send("sendVideo", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

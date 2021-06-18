@@ -9,7 +9,7 @@ pub struct SendMediaGroup<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// A JSON-serialized array describing messages to be sent, must include 2-10 items
     pub media: Vec<InputMediaAudio>,
     /// Sends messages silently. Users will receive a notification with no sound.
@@ -24,7 +24,7 @@ pub struct SendMediaGroup<'a> {
 }
 
 impl<'a> SendMediaGroup<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, media: Vec<InputMediaAudio>) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, media: Vec<InputMediaAudio>) -> Self {
         Self {
             chat_id: chat_id,
             media: media,
@@ -39,7 +39,7 @@ impl<'a> SendMediaGroup<'a> {
         let resp = self.bot.send("sendMediaGroup", Some(string)).await?;
         Ok(serde_json::from_str::<Vec<Message>>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }
