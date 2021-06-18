@@ -9,7 +9,7 @@ pub struct SendPoll<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Poll question, 1-300 characters
     pub question: String,
     /// A JSON-serialized list of answer options, 2-10 strings 1-100 characters each
@@ -59,7 +59,7 @@ pub struct SendPoll<'a> {
 }
 
 impl<'a> SendPoll<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, question: String, options: Vec<String>) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, question: String, options: Vec<String>) -> Self {
         Self {
             chat_id: chat_id,
             question: question,
@@ -86,7 +86,7 @@ impl<'a> SendPoll<'a> {
         let resp = self.bot.send("sendPoll", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

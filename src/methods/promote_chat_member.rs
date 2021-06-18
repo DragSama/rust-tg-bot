@@ -9,7 +9,7 @@ pub struct PromoteChatMember<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Unique identifier of the target user
     pub user_id: i32,
     /// Pass True, if the administrator's presence in the chat is hidden
@@ -48,7 +48,7 @@ pub struct PromoteChatMember<'a> {
 }
 
 impl<'a> PromoteChatMember<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, user_id: i32) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, user_id: i32) -> Self {
         Self {
             chat_id: chat_id,
             user_id: user_id,
@@ -71,7 +71,7 @@ impl<'a> PromoteChatMember<'a> {
         let resp = self.bot.send("promoteChatMember", Some(string)).await?;
         Ok(serde_json::from_str::<bool>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

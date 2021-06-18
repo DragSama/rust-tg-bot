@@ -9,7 +9,7 @@ pub struct UnbanChatMember<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target group or username of the target supergroup or channel (in the format @username)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Unique identifier of the target user
     pub user_id: i32,
     /// Do nothing if the user is not banned
@@ -18,7 +18,7 @@ pub struct UnbanChatMember<'a> {
 }
 
 impl<'a> UnbanChatMember<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, user_id: i32) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, user_id: i32) -> Self {
         Self {
             chat_id: chat_id,
             user_id: user_id,
@@ -31,7 +31,7 @@ impl<'a> UnbanChatMember<'a> {
         let resp = self.bot.send("unbanChatMember", Some(string)).await?;
         Ok(serde_json::from_str::<bool>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

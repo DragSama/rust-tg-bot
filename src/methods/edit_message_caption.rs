@@ -10,7 +10,7 @@ pub struct EditMessageCaption<'a> {
     bot: &'a Bot,
     /// Required if inline_message_id is not specified. Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub chat_id: Option<i32>,
+    pub chat_id: Option<i64>,
     /// Required if inline_message_id is not specified. Identifier of the message to edit
     #[serde(skip_serializing_if = "Option::is_none")]
     pub message_id: Option<i32>,
@@ -49,7 +49,7 @@ impl<'a> EditMessageCaption<'a> {
         let resp = self.bot.send("editMessageCaption", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = Some(chat_id);
         self
     }

@@ -9,7 +9,7 @@ pub struct SendDocument<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// File to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a file from the Internet, or upload a new one using multipart/form-data. More info on Sending Files
     pub document: InputFile,
     /// Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More info on Sending Files
@@ -42,7 +42,7 @@ pub struct SendDocument<'a> {
 }
 
 impl<'a> SendDocument<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, document: InputFile) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, document: InputFile) -> Self {
         Self {
             chat_id: chat_id,
             document: document,
@@ -63,7 +63,7 @@ impl<'a> SendDocument<'a> {
         let resp = self.bot.send("sendDocument", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

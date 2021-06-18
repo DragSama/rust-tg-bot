@@ -9,7 +9,7 @@ pub struct SendContact<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Contact's phone number
     pub phone_number: String,
     /// Contact's first name
@@ -35,7 +35,7 @@ pub struct SendContact<'a> {
 }
 
 impl<'a> SendContact<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, phone_number: String, first_name: String) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, phone_number: String, first_name: String) -> Self {
         Self {
             chat_id: chat_id,
             phone_number: phone_number,
@@ -54,7 +54,7 @@ impl<'a> SendContact<'a> {
         let resp = self.bot.send("sendContact", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

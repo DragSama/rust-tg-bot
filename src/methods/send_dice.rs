@@ -9,7 +9,7 @@ pub struct SendDice<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Emoji on which the dice throw animation is based. Currently, must be one of "", "", "", "", "", or "". Dice can have values 1-6 for "", "" and "", values 1-5 for "" and "", and values 1-64 for "". Defaults to ""
     #[serde(skip_serializing_if = "Option::is_none")]
     pub emoji: Option<String>,
@@ -28,7 +28,7 @@ pub struct SendDice<'a> {
 }
 
 impl<'a> SendDice<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64) -> Self {
         Self {
             chat_id: chat_id,
             emoji: None,
@@ -44,7 +44,7 @@ impl<'a> SendDice<'a> {
         let resp = self.bot.send("sendDice", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

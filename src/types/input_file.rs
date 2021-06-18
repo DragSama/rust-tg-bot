@@ -1,6 +1,11 @@
-use crate::types::File;
-
 use serde::{Deserialize, Serialize};
 
+pub enum FilePath {
+    FileID(i32),
+    Url(String)
+}
+
 #[derive(Debug, Deserialize, Serialize, Clone)]
-pub struct InputFile {}
+pub enum InputFile {
+
+}

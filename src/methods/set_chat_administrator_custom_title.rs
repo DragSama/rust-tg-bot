@@ -9,7 +9,7 @@ pub struct SetChatAdministratorCustomTitle<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target supergroup (in the format @supergroupusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Unique identifier of the target user
     pub user_id: i32,
     /// New custom title for the administrator; 0-16 characters, emoji are not allowed
@@ -17,7 +17,7 @@ pub struct SetChatAdministratorCustomTitle<'a> {
 }
 
 impl<'a> SetChatAdministratorCustomTitle<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, user_id: i32, custom_title: String) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, user_id: i32, custom_title: String) -> Self {
         Self {
             chat_id: chat_id,
             user_id: user_id,
@@ -33,7 +33,7 @@ impl<'a> SetChatAdministratorCustomTitle<'a> {
             .await?;
         Ok(serde_json::from_str::<bool>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

@@ -9,7 +9,7 @@ pub struct PinChatMessage<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Identifier of a message to pin
     pub message_id: i32,
     /// Pass True, if it is not necessary to send a notification to all chat members about the new pinned message. Notifications are always disabled in channels and private chats.
@@ -18,7 +18,7 @@ pub struct PinChatMessage<'a> {
 }
 
 impl<'a> PinChatMessage<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, message_id: i32) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, message_id: i32) -> Self {
         Self {
             chat_id: chat_id,
             message_id: message_id,
@@ -31,7 +31,7 @@ impl<'a> PinChatMessage<'a> {
         let resp = self.bot.send("pinChatMessage", Some(string)).await?;
         Ok(serde_json::from_str::<bool>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

@@ -9,9 +9,9 @@ pub struct CopyMessage<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Unique identifier for the chat where the original message was sent (or channel username in the format @channelusername)
-    pub from_chat_id: i32,
+    pub from_chat_id: i64,
     /// Message identifier in the chat specified in from_chat_id
     pub message_id: i32,
     /// New caption for media, 0-1024 characters after entities parsing. If not specified, the original caption is kept
@@ -38,7 +38,7 @@ pub struct CopyMessage<'a> {
 }
 
 impl<'a> CopyMessage<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, from_chat_id: i32, message_id: i32) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, from_chat_id: i64, message_id: i32) -> Self {
         Self {
             chat_id: chat_id,
             from_chat_id: from_chat_id,
@@ -58,11 +58,11 @@ impl<'a> CopyMessage<'a> {
         let resp = self.bot.send("copyMessage", Some(string)).await?;
         Ok(serde_json::from_str::<MessageId>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }
-    pub fn from_chat_id(mut self, from_chat_id: i32) -> Self {
+    pub fn from_chat_id(mut self, from_chat_id: i64) -> Self {
         self.from_chat_id = from_chat_id;
         self
     }

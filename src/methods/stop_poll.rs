@@ -9,7 +9,7 @@ pub struct StopPoll<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Identifier of the original message with the poll
     pub message_id: i32,
     /// A JSON-serialized object for a new message inline keyboard.
@@ -18,7 +18,7 @@ pub struct StopPoll<'a> {
 }
 
 impl<'a> StopPoll<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, message_id: i32) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, message_id: i32) -> Self {
         Self {
             chat_id: chat_id,
             message_id: message_id,
@@ -31,7 +31,7 @@ impl<'a> StopPoll<'a> {
         let resp = self.bot.send("stopPoll", Some(string)).await?;
         Ok(serde_json::from_str::<Poll>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

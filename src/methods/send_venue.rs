@@ -9,7 +9,7 @@ pub struct SendVenue<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Latitude of the venue
     pub latitude: f64,
     /// Longitude of the venue
@@ -47,7 +47,7 @@ pub struct SendVenue<'a> {
 impl<'a> SendVenue<'a> {
     pub fn new(
         bot: &'a Bot,
-        chat_id: i32,
+        chat_id: i64,
         latitude: f64,
         longitude: f64,
         title: String,
@@ -75,7 +75,7 @@ impl<'a> SendVenue<'a> {
         let resp = self.bot.send("sendVenue", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

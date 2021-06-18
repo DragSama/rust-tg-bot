@@ -9,7 +9,7 @@ pub struct SendSticker<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. More info on Sending Files
     pub sticker: InputFile,
     /// Sends the message silently. Users will receive a notification with no sound.
@@ -27,7 +27,7 @@ pub struct SendSticker<'a> {
 }
 
 impl<'a> SendSticker<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, sticker: InputFile) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, sticker: InputFile) -> Self {
         Self {
             chat_id: chat_id,
             sticker: sticker,
@@ -43,7 +43,7 @@ impl<'a> SendSticker<'a> {
         let resp = self.bot.send("sendSticker", Some(string)).await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }

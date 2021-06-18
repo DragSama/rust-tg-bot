@@ -9,13 +9,13 @@ pub struct SetChatTitle<'a> {
     #[serde(skip)]
     bot: &'a Bot,
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
-    pub chat_id: i32,
+    pub chat_id: i64,
     /// New chat title, 1-255 characters
     pub title: String,
 }
 
 impl<'a> SetChatTitle<'a> {
-    pub fn new(bot: &'a Bot, chat_id: i32, title: String) -> Self {
+    pub fn new(bot: &'a Bot, chat_id: i64, title: String) -> Self {
         Self {
             chat_id: chat_id,
             title: title,
@@ -27,7 +27,7 @@ impl<'a> SetChatTitle<'a> {
         let resp = self.bot.send("setChatTitle", Some(string)).await?;
         Ok(serde_json::from_str::<bool>(&resp.text().await?)?)
     }
-    pub fn chat_id(mut self, chat_id: i32) -> Self {
+    pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;
         self
     }
