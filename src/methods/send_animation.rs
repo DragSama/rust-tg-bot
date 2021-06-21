@@ -13,6 +13,7 @@ pub struct SendAnimation<'a> {
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     pub chat_id: i64,
     /// Animation to send. Pass a file_id as String to send an animation that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get an animation from the Internet, or upload a new animation using multipart/form-data. More info on Sending Files
+    #[serde(skip)]
     pub animation: InputFile,
     /// Duration of sent animation in seconds
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -24,7 +25,7 @@ pub struct SendAnimation<'a> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub height: Option<i32>,
     /// Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data. Thumbnails can't be reused and can be only uploaded as a new file, so you can pass "attach://<file_attach_name>" if the thumbnail was uploaded using multipart/form-data under <file_attach_name>. More info on Sending Files
-    #[serde(skip_serializing_if = "Option::is_none")]
+    #[serde(skip)]
     pub thumb: Option<InputFile>,
     /// Animation caption (may also be used when resending animation by file_id), 0-1024 characters after entities parsing
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -69,8 +70,24 @@ impl<'a> SendAnimation<'a> {
         }
     }
     pub async fn send(self) -> Result<Message> {
-        let string = serde_json::to_string(&self)?;
-        let resp = self.bot.send("sendAnimation", Some(string)).await?;
+        let mut builder = self.bot.get_builder("sendAnimation").query(&self);
+        let mut query = Vec::new();
+        let mut form = reqwest::multipart::Form::new();
+        match self.animation {
+            InputFile::File(content) => {
+                let file = reqwest::multipart::Part::bytes(content).file_name("animation");
+                form = form.part("animation", file);
+            },
+            InputFile::Url(url) => {
+                query.push(("animation", url))
+            }
+        }
+        let resp = builder.query(query)
+            .multipart(form)
+            .send()
+            .await?
+            .text()
+            .await?;
         Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
     }
     pub fn chat_id(mut self, chat_id: i64) -> Self {
