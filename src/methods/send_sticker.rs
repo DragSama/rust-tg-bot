@@ -11,6 +11,7 @@ pub struct SendSticker<'a> {
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     pub chat_id: i64,
     /// Sticker to send. Pass a file_id as String to send a file that exists on the Telegram servers (recommended), pass an HTTP URL as a String for Telegram to get a .WEBP file from the Internet, or upload a new one using multipart/form-data. More info on Sending Files
+    #[serde(skip)]
     pub sticker: InputFile,
     /// Sends the message silently. Users will receive a notification with no sound.
     #[serde(skip_serializing_if = "Option::is_none")]

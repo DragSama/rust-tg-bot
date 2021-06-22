@@ -70,7 +70,7 @@ impl<'a> SendAnimation<'a> {
         }
     }
     pub async fn send(self) -> Result<Message> {
-        let mut builder = self.bot.get_builder("sendAnimation").query(&self);
+        let builder = self.bot.get_builder("sendAnimation").query(&self);
         let mut query = Vec::new();
         let mut form = reqwest::multipart::Form::new();
         match self.animation {
@@ -82,13 +82,14 @@ impl<'a> SendAnimation<'a> {
                 query.push(("animation", url))
             }
         }
-        let resp = builder.query(query)
+        let resp = builder.query(&query)
             .multipart(form)
             .send()
             .await?
             .text()
             .await?;
-        Ok(serde_json::from_str::<Message>(&resp.text().await?)?)
+        println!("{}", resp);
+        Ok(serde_json::from_str::<Message>(&resp)?)
     }
     pub fn chat_id(mut self, chat_id: i64) -> Self {
         self.chat_id = chat_id;

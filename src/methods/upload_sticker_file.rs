@@ -11,6 +11,7 @@ pub struct UploadStickerFile<'a> {
     /// User identifier of sticker file owner
     pub user_id: i32,
     /// PNG image with the sticker, must be up to 512 kilobytes in size, dimensions must not exceed 512px, and either width or height must be exactly 512px. More info on Sending Files
+    #[serde(skip)]
     pub png_sticker: InputFile,
 }
 

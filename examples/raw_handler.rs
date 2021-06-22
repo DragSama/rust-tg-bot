@@ -10,7 +10,7 @@ use rust_tg_bot::{
 };
 use std::env;
 
-async fn raw_handler(update: Update, bot: Bot) -> Result<()> {
+async fn raw_handler(update: Update, _bot: Bot) -> Result<()> {
     println!("Got update: {:#?}", update);
     Ok(())
 }

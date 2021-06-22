@@ -49,7 +49,7 @@ impl Bot {
         Ok(response)
     }
 
-    pub(crate) async fn get_builder(&self, method: &str) -> reqwest::RequestBuilder {
+    pub(crate) fn get_builder(&self, method: &str) -> reqwest::RequestBuilder {
         let url = format!("{}{}", self.base_endpoint, method);
         self.reqwest_client.post(url)
     }

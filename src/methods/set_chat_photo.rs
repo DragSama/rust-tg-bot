@@ -11,6 +11,7 @@ pub struct SetChatPhoto<'a> {
     /// Unique identifier for the target chat or username of the target channel (in the format @channelusername)
     pub chat_id: i64,
     /// New chat photo, uploaded using multipart/form-data
+    #[serde(skip)]
     pub photo: InputFile,
 }
 
